@@ -5,12 +5,12 @@ import maps.IdMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClaimMap extends IdMap<InsuranceClaim> implements ClaimMapOperations {
+public class CustomerClaimMap extends IdMap<InsuranceClaim> implements CustomerClaimManager {
     // This class maps unique ID (String) to InsuranceClaim
     // IMPORTANT: Each instance of this class only records insurance claims of ONE customer
     // This class is NOT used to manage all the claims in the entire system
 
-    public ClaimMap() {
+    public CustomerClaimMap() {
         super();
     }
 

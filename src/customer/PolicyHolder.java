@@ -1,7 +1,7 @@
 package customer;
 
 public class PolicyHolder extends Customer {
-    private CustomerMap dependents;
+    private CustomerManager dependents;
 
     public PolicyHolder() {
         super();

@@ -2,10 +2,12 @@ package claims;
 
 import java.util.List;
 
-public interface ClaimMapOperations {
+public interface CustomerClaimManager {
+    // This interface deals with all the claims belonging to a single customer
+
     // Get the claim with specified ID
     // Returns null if id does not exist
-    InsuranceClaim get(String id);
+    InsuranceClaim get(String claimId);
 
     // Get all the claims in the map
     // Returns empty list if map is empty
@@ -14,7 +16,7 @@ public interface ClaimMapOperations {
     // Find and update a claim with specified ID
     // Returns the newly updated claim
     // If ID does not exist, return null
-    InsuranceClaim update(String id, InsuranceClaim newClaim);
+    InsuranceClaim update(String claimId, InsuranceClaim newClaim);
 
     // Add a new claim to the map
     // Return the new claim

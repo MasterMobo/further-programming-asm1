@@ -23,4 +23,14 @@ public class InsuranceCard {
         this.policyOwner = policyOwner;
         this.expirationDate = expirationDate;
     }
+
+    @Override
+    public String toString() {
+        return "InsuranceCard{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", cardHolder=" + cardHolder +
+                ", policyOwner=" + policyOwner +
+                ", expirationDate=" + expirationDate +
+                '}';
+    }
 }

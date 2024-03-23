@@ -1,7 +1,9 @@
+import claims.InsuranceClaim;
 import customer.Customer;
-import customer.CustomerMap;
 import customer.Dependent;
 import customer.PolicyHolder;
+import insuranceCard.InsuranceCard;
+import systems.InsuranceClaimSystem;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,10 +13,19 @@ public class Main {
 
         ((PolicyHolder) mary).addDependent((Dependent) josh);
         ((PolicyHolder) mary).addDependent((Dependent) keith);
+        InsuranceClaimSystem system = new InsuranceClaimSystem();
+        system.addCustomer(mary);
+        system.displayCustomers();
+//
+//        InsuranceCard card = new InsuranceCard();
+//
+//        system.addInsuranceCard("223", card);
+//
+//        InsuranceClaim claim = new InsuranceClaim();
+//        system.addClaim("223", claim);
+//
+//        System.out.println(system.getAllClaims("223").get(0));
 
-        CustomerMap customers = new CustomerMap();
-        customers.add(mary);
 
-        System.out.println(customers);
     }
 }
