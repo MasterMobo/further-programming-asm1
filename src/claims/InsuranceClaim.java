@@ -1,10 +1,11 @@
 package claims;
 
 import customer.Customer;
-import maps.Identifiable;
+import id.Identifiable;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class InsuranceClaim implements Identifiable {
     private String id;
@@ -12,7 +13,7 @@ public class InsuranceClaim implements Identifiable {
     private Customer insuredPerson;
     private String cardNumber;
     private Date examDate;
-    private ArrayList<Document> documents;
+    private List<Document> documents;
     private double claimAmount;
     private ClaimStatus status;
     private BankInfo receiverBankInfo;
@@ -29,7 +30,7 @@ public class InsuranceClaim implements Identifiable {
         receiverBankInfo = null;
     }
 
-    public InsuranceClaim(String id, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate, ArrayList<Document> documents, double claimAmount, ClaimStatus status, BankInfo receiverBankInfo) {
+    public InsuranceClaim(String id, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate, List<Document> documents, double claimAmount, ClaimStatus status, BankInfo receiverBankInfo) {
         this.id = id;
         this.claimDate = claimDate;
         this.insuredPerson = insuredPerson;
@@ -44,5 +45,20 @@ public class InsuranceClaim implements Identifiable {
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "InsuranceClaim{" +
+                "id='" + id + '\'' +
+                ", claimDate=" + claimDate +
+                ", insuredPerson=" + insuredPerson +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", examDate=" + examDate +
+                ", documents=" + documents +
+                ", claimAmount=" + claimAmount +
+                ", status=" + status +
+                ", receiverBankInfo=" + receiverBankInfo +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package insuranceCard;
+package card;
 
 public class PolicyOwner {
     private String name;
@@ -9,5 +9,12 @@ public class PolicyOwner {
 
     public PolicyOwner(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "PolicyOwner{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

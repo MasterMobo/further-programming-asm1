@@ -1,9 +1,12 @@
+import card.InsuranceCard;
+import card.PolicyOwner;
 import claims.InsuranceClaim;
 import customer.Customer;
 import customer.Dependent;
 import customer.PolicyHolder;
-import insuranceCard.InsuranceCard;
 import systems.InsuranceClaimSystem;
+
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,19 +16,18 @@ public class Main {
 
         ((PolicyHolder) mary).addDependent((Dependent) josh);
         ((PolicyHolder) mary).addDependent((Dependent) keith);
+
+        PolicyOwner rmit = new PolicyOwner("RMIT");
+
+        InsuranceCard joshCard = InsuranceCard.createInsuranceCard("12345", josh, rmit, new Date("01/03/2024"));
+
+        InsuranceClaim joshClaim = new InsuranceClaim();
+
         InsuranceClaimSystem system = new InsuranceClaimSystem();
-        system.addCustomer(mary);
-        system.displayCustomers();
-//
-//        InsuranceCard card = new InsuranceCard();
-//
-//        system.addInsuranceCard("223", card);
-//
-//        InsuranceClaim claim = new InsuranceClaim();
-//        system.addClaim("223", claim);
-//
-//        System.out.println(system.getAllClaims("223").get(0));
+        system.add(josh);
+        system.add(joshCard);
 
-
+        System.out.println(system.getAllCustomers());
+        System.out.println(system.getAllInsuranceCards());
     }
 }
