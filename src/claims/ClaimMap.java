@@ -19,8 +19,4 @@ public class ClaimMap extends IdMap<InsuranceClaim> implements ClaimProcessManag
         return super.getAll();
     }
 
-    @Override
-    public boolean exists(String id) {
-        return super.exists(id);
-    }
 }

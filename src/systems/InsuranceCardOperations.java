@@ -7,5 +7,5 @@ import java.util.List;
 public interface InsuranceCardOperations {
     void add(InsuranceCard card);
     InsuranceCard getInsuranceCard(String cardNum);
-    List<InsuranceCard> getAllInsuranceCards();
+    List<InsuranceCard> getInsuranceCard();
 }

@@ -42,6 +42,16 @@ public abstract class IdMap <T extends Identifiable> implements IdManager<T>{
     }
 
     @Override
+    public void delete(String id) {
+        idToItem.remove(id);
+    }
+
+    @Override
+    public void update(String id, T newItem) {
+        idToItem.replace(id, newItem);
+    }
+
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (T item: idToItem.values()) {

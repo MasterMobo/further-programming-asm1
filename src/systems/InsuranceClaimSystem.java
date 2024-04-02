@@ -42,6 +42,16 @@ public class InsuranceClaimSystem implements SystemOperations{
     }
 
     @Override
+    public Customer getCustomer(String customerId) {
+        return customerManager.get(customerId);
+    }
+
+    @Override
+    public List<Customer> getCustomer() {
+        return customerManager.getAll();
+    }
+
+    @Override
     public void add(InsuranceCard card) {
         insuranceCardManager.add(card);
     }
@@ -52,23 +62,33 @@ public class InsuranceClaimSystem implements SystemOperations{
     }
 
     @Override
-    public List<InsuranceCard> getAllInsuranceCards() {
+    public List<InsuranceCard> getInsuranceCard() {
         return insuranceCardManager.getAll();
     }
 
     @Override
     public void add(InsuranceClaim claim) {
-
+        claimProcessManager.add(claim);
     }
 
     @Override
-    public Customer getCustomer(String customerId) {
-        return customerManager.get(customerId);
+    public InsuranceClaim getInsuranceClaim(String id) {
+        return claimProcessManager.getOne(id);
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
-        return customerManager.getAll();
+    public List<InsuranceClaim> getInsuranceClaim() {
+        return claimProcessManager.getAll();
+    }
+
+    @Override
+    public void deleteInsuranceClaim(String id) {
+        claimProcessManager.delete(id);
+    }
+
+    @Override
+    public void updateInsuranceClaim(String id, InsuranceClaim newClaim) {
+        claimProcessManager.update(id, newClaim);
     }
 
 }

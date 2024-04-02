@@ -7,4 +7,6 @@ public interface IdManager<T> {
     List<T> getAll();
     boolean exists(String id);
     void add(T item);
+    void delete(String id);
+    void update(String id, T newItem);
 }

@@ -34,6 +34,10 @@ public class InsuranceCard implements Identifiable {
         return newCard;
     }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
     @Override
     public String toString() {
         return "InsuranceCard{" +
