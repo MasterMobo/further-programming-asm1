@@ -3,7 +3,7 @@ package systems;
 import card.InsuranceCard;
 import card.InsuranceCardManager;
 import card.InsuranceCardMap;
-import claims.ClaimMap;
+import claims.InsuranceClaimMap;
 import claims.ClaimProcessManager;
 import claims.InsuranceClaim;
 import customer.Customer;
@@ -24,7 +24,7 @@ public class InsuranceClaimSystem implements SystemOperations{
         // Default implementations
         customerManager = new CustomerMap();
         insuranceCardManager = new InsuranceCardMap();
-        claimProcessManager = new ClaimMap();
+        claimProcessManager = new InsuranceClaimMap();
     }
 
     public InsuranceClaimSystem(CustomerManager customerManager, InsuranceCardManager insuranceCardManager, ClaimProcessManager claimProcessManager) {

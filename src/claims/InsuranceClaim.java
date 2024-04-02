@@ -15,7 +15,7 @@ public class InsuranceClaim implements Identifiable {
     private Date examDate;
     private List<Document> documents;
     private double claimAmount;
-    private ClaimStatus status;
+    private InsuranceClaimStatus status;
     private BankInfo receiverBankInfo;
 
     public InsuranceClaim() {
@@ -30,7 +30,7 @@ public class InsuranceClaim implements Identifiable {
         receiverBankInfo = null;
     }
 
-    public InsuranceClaim(String id, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate, List<Document> documents, double claimAmount, ClaimStatus status, BankInfo receiverBankInfo) {
+    public InsuranceClaim(String id, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate, List<Document> documents, double claimAmount, InsuranceClaimStatus status, BankInfo receiverBankInfo) {
         this.id = id;
         this.claimDate = claimDate;
         this.insuredPerson = insuredPerson;

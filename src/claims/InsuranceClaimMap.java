@@ -5,8 +5,8 @@ import id.PrefixIdGenerator;
 
 import java.util.List;
 
-public class ClaimMap extends IdMap<InsuranceClaim> implements ClaimProcessManager{
-    public ClaimMap() {
+public class InsuranceClaimMap extends IdMap<InsuranceClaim> implements ClaimProcessManager{
+    public InsuranceClaimMap() {
         super();
         idGenerator = new PrefixIdGenerator("f", 10);
     }

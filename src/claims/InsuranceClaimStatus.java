@@ -1,6 +1,6 @@
 package claims;
 
-public enum ClaimStatus {
+public enum InsuranceClaimStatus {
     NEW,
     PROCESSING,
     DONE
