@@ -1,3 +1,5 @@
+import id.IdGenerator;
+import id.PrefixIdGenerator;
 import inputs.*;
 
 public class Main {
@@ -11,7 +13,7 @@ public class Main {
 //
 //        PolicyOwner rmit = new PolicyOwner("RMIT");
 //
-//        InsuranceCard joshCard = InsuranceCard.createInsuranceCard("12345", josh, rmit, new Date("01/03/2024"));
+//        InsuranceCard joshCard = InsuranceCard.create("12345", josh, rmit, new Date("01/03/2024"));
 //
 //        Document joshDocument = new Document("VCB", "1233");
 //        List<Document> docs = List.of(new Document[]{joshDocument});
@@ -28,8 +30,7 @@ public class Main {
 //        System.out.println(system.getInsuranceCard());
 //        System.out.println(system.getInsuranceClaim());
 
-        DataReader<Double> reader = new ConsoleReader<>(new DoubleConverter());
-        double d = reader.read();
-        System.out.println(d);
+        IdGenerator generator = new PrefixIdGenerator("c", 7);
+        System.out.println(generator.randomId());
     }
 }

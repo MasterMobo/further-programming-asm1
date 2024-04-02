@@ -40,4 +40,5 @@ public abstract class Customer implements Identifiable {
                 ", fullName='" + fullName + '\'' +
                 '}';
     }
+
 }

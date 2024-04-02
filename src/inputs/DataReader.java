@@ -14,6 +14,10 @@ public abstract class DataReader<T> {
         this.converter = converter;
     }
 
+    public void setConverter(TypeConverter<T> converter) {
+        this.converter = converter;
+    }
+
     public T read() {
         // Read the raw string and convert it to type T using the converter
         String s = readString();

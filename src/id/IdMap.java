@@ -10,11 +10,23 @@ public abstract class IdMap <T extends Identifiable> implements IdManager<T>{
     // Type T has to implements the Identifiable interface, which means it needs a unique ID
     // This class serve as a basis for other mapping classes, providing the basic members of an ID map
     // This class must be implemented concretely according to specific use cases.
+    protected IdGenerator idGenerator;
 
     protected Map<String, T> idToItem;
 
     public IdMap() {
         idToItem = new HashMap<>();
+    }
+
+    @Override
+    public String generateId() {
+        String id = idGenerator.randomId();
+
+        // If ID already exists, generate new one
+        while (exists(id)) {
+            id = idGenerator.randomId();
+        }
+        return id;
     }
 
     @Override

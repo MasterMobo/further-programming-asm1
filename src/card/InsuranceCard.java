@@ -25,7 +25,7 @@ public class InsuranceCard implements Identifiable {
         this.expirationDate = expirationDate;
     }
 
-    public static InsuranceCard createInsuranceCard(String cardNumber, Customer cardHolder, PolicyOwner policyOwner, Date expirationDate) {
+    public static InsuranceCard create(String cardNumber, Customer cardHolder, PolicyOwner policyOwner, Date expirationDate) {
         // Factory?
         // Instantiate new InsuranceCard and set the card-holder's card to the new card
         InsuranceCard newCard = new InsuranceCard(cardNumber, cardHolder, policyOwner, expirationDate);

@@ -1,10 +1,14 @@
 package customer;
 
+import id.IdGenerator;
 import id.IdMap;
+import id.PrefixIdGenerator;
 
 public class CustomerMap extends IdMap<Customer> implements CustomerManager {
+
     public CustomerMap() {
         super();
+        idGenerator = new PrefixIdGenerator("c", 7);
     }
 
     @Override
