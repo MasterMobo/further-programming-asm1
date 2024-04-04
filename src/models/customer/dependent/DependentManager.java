@@ -1,6 +1,6 @@
 package models.customer.dependent;
 
-import models.customer.CustomerManager;
+import models.customer.CustomerRoleManager;
 
-public interface DependentManager extends CustomerManager<Dependent> {
+public interface DependentManager extends CustomerRoleManager<Dependent> {
 }

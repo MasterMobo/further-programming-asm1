@@ -1,8 +1,8 @@
 package models.customer.dependent;
 
-import models.customer.CustomerMap;
+import models.customer.CustomerRoleMap;
 
-public class DependentMap extends CustomerMap<Dependent> implements DependentManager {
+public class DependentMap extends CustomerRoleMap<Dependent> implements DependentManager {
     public DependentMap() {
         super();
     }

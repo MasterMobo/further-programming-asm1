@@ -1,9 +1,6 @@
 package models.customer.holder;
 
 import models.customer.Customer;
-import models.customer.CustomerManager;
-import models.customer.CustomerMap;
-import models.customer.dependent.Dependent;
 
 import java.util.ArrayList;
 import java.util.List;

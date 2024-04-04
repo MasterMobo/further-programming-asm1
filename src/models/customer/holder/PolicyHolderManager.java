@@ -1,6 +1,6 @@
 package models.customer.holder;
 
-import models.customer.CustomerManager;
+import models.customer.CustomerRoleManager;
 
-public interface PolicyHolderManager extends CustomerManager<PolicyHolder> {
+public interface PolicyHolderManager extends CustomerRoleManager<PolicyHolder> {
 }

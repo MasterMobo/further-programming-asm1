@@ -1,6 +1,7 @@
-package controllers;
+package controllers.customers;
 
 import models.customer.Customer;
+import models.customer.CustomerManager;
 import models.customer.dependent.Dependent;
 import models.customer.dependent.DependentManager;
 import models.customer.holder.PolicyHolder;
@@ -8,12 +9,12 @@ import models.customer.holder.PolicyHolderManager;
 import models.customer.CustomerRoleCode;
 
 public class CustomerAdder {
-    private PolicyHolderManager policyHolders;
-    private DependentManager dependents;
+    private final PolicyHolderManager policyHolders;
+    private final DependentManager dependents;
 
-    public CustomerAdder(PolicyHolderManager policyHolders, DependentManager dependents) {
-        this.policyHolders = policyHolders;
-        this.dependents = dependents;
+    public CustomerAdder(CustomerManager customerManager) {
+        this.policyHolders = customerManager.getPolicyHolders();
+        this.dependents = customerManager.getDependents();
     }
 
     public Customer add(String role, Customer customer) {
