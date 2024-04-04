@@ -1,4 +1,4 @@
-package views.general;
+package views.general.customers;
 
 import models.customer.Customer;
 import models.customer.CustomerRoleManager;

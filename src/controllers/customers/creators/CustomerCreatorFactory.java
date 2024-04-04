@@ -2,7 +2,7 @@ package controllers.customers.creators;
 
 import models.customer.CustomerManager;
 import models.customer.CustomerRoleCode;
-import views.general.CustomerView;
+import views.general.customers.CustomerView;
 
 public class CustomerCreatorFactory {
     // This class creates different CustomerCreators depending on what role is needed

@@ -1,7 +1,7 @@
 package views.text.customers;
 
 import models.customer.Customer;
-import views.general.DependentView;
+import views.general.customers.DependentView;
 import views.io.ConsoleReader;
 import views.io.DataReader;
 

@@ -102,4 +102,9 @@ public class CustomerManagementSystem implements CustomerManager{
         return get(customerId).hasInsuranceCard();
     }
 
+    @Override
+    public String getCardNumber(String customerId) {
+        return get(customerId).getInsuranceCardNumber();
+    }
+
 }

@@ -5,8 +5,8 @@ import controllers.customers.creators.CustomerCreatorFactory;
 import models.customer.Customer;
 import models.customer.CustomerManager;
 import models.customer.CustomerRoleCode;
-import views.general.CustomerView;
-import views.general.CustomerViewFactory;
+import views.general.customers.CustomerView;
+import views.general.customers.CustomerViewFactory;
 
 import java.util.Map;
 

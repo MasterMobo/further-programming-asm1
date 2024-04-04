@@ -7,8 +7,8 @@ import models.customer.dependent.Dependent;
 import models.customer.dependent.DependentManager;
 import models.customer.holder.PolicyHolder;
 import models.customer.holder.PolicyHolderManager;
-import views.general.CustomerView;
-import views.general.DependentView;
+import views.general.customers.CustomerView;
+import views.general.customers.DependentView;
 
 import java.util.Map;
 

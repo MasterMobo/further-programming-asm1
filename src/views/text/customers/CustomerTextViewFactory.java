@@ -1,8 +1,8 @@
 package views.text.customers;
 
 import models.customer.CustomerRoleCode;
-import views.general.CustomerView;
-import views.general.CustomerViewFactory;
+import views.general.customers.CustomerView;
+import views.general.customers.CustomerViewFactory;
 
 public class CustomerTextViewFactory extends CustomerViewFactory {
     @Override

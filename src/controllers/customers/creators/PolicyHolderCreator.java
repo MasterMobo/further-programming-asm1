@@ -5,7 +5,7 @@ import models.customer.CustomerManager;
 import models.customer.CustomerRoleCode;
 import models.customer.holder.PolicyHolder;
 import models.customer.holder.PolicyHolderManager;
-import views.general.CustomerView;
+import views.general.customers.CustomerView;
 
 import java.util.Map;
 

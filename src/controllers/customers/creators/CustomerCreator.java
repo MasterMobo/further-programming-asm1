@@ -2,7 +2,7 @@ package controllers.customers.creators;
 
 import models.customer.Customer;
 import models.customer.CustomerManager;
-import views.general.CustomerView;
+import views.general.customers.CustomerView;
 
 import java.util.Map;
 

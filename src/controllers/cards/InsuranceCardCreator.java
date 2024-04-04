@@ -49,7 +49,7 @@ public class InsuranceCardCreator {
 
             return cardManager.add(newCard);
 
-        } catch (Error e) {
+        } catch (Exception e) {
             cardView.displayError("Invalid Date");
             return null;
         }

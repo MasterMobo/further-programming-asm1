@@ -37,4 +37,6 @@ public interface CustomerManager {
 
     // Check if the customer with the provided ID has an insurance card
     boolean hasInsuranceCard(String customerId);
+
+    String getCardNumber(String customerId);
 }
