@@ -20,7 +20,7 @@ public abstract class Customer implements Identifiable {
     public Customer(String id, String fullName) {
         this.id = id;
         this.fullName = fullName;
-        this.insuranceCardNumber = null;
+        this.insuranceCardNumber = "Default";
     }
 
     @Override
@@ -34,6 +34,14 @@ public abstract class Customer implements Identifiable {
 
     public String getInsuranceCardNumber() {
         return insuranceCardNumber;
+    }
+
+    public boolean hasInsuranceCard() {
+        return insuranceCardNumber != null && !(insuranceCardNumber.equals("Default"));
+    }
+
+    public void setInsuranceCardNumber(String insuranceCardNumber) {
+        this.insuranceCardNumber = insuranceCardNumber;
     }
 
     @Override

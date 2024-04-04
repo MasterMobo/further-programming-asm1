@@ -1,4 +1,4 @@
-package views.text;
+package views.text.customers;
 
 import models.customer.CustomerRoleCode;
 import views.general.CustomerView;

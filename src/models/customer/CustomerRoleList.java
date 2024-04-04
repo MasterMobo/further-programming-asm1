@@ -5,30 +5,32 @@ import models.customer.holder.PolicyHolderManager;
 import models.id.IdGenerator;
 import models.id.PrefixIdGenerator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // TODO: find a better name for this
-public class CustomerSystem implements CustomerManager{
+public class CustomerRoleList implements CustomerManager{
 
     // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
-    private Set<String> customerIds;
-    private PolicyHolderManager policyHolders;
-    private DependentManager dependents;
-    private IdGenerator idGenerator;
+    private final Set<String> customerIds;
+    private final List<CustomerRoleManager> customerRoles;
+    private final IdGenerator idGenerator;
 
-    public CustomerSystem() {
-        policyHolders = null;
-        dependents = null;
+    public CustomerRoleList() {
         customerIds = new HashSet<>();
+        customerRoles = new ArrayList<>();
         idGenerator = new PrefixIdGenerator("c", 10);
     }
 
-    public CustomerSystem(PolicyHolderManager policyHolders, DependentManager dependents) {
-        this.policyHolders = policyHolders;
-        this.dependents = dependents;
+    public CustomerRoleList(PolicyHolderManager policyHolders, DependentManager dependents) {
         customerIds = new HashSet<>();
         idGenerator = new PrefixIdGenerator("c", 10);
+
+        customerRoles = new ArrayList<>();
+        customerRoles.add(policyHolders);
+        customerRoles.add(dependents);
     }
 
     @Override
@@ -66,11 +68,31 @@ public class CustomerSystem implements CustomerManager{
         return id;
     }
 
+    @Override
+    public Customer get(String customerId) {
+        // Since this class contains customers of all roles. We need to check if the id is contained in any role manager.
+        for (CustomerRoleManager manager: customerRoles) {
+            Customer customer = (Customer) manager.get(customerId);
+            if (customer != null) return customer;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean exists(String customerId) {
+        return get(customerId) != null;
+    }
+
+    @Override
+    public boolean hasInsuranceCard(String customerId) {
+        return get(customerId).hasInsuranceCard();
+    }
+
     public PolicyHolderManager getPolicyHolders() {
-        return policyHolders;
+        return (PolicyHolderManager) customerRoles.get(0);
     }
 
     public DependentManager getDependents() {
-        return dependents;
+        return (DependentManager) customerRoles.get(1);
     }
 }

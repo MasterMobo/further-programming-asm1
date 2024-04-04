@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class InsuranceCard implements Identifiable {
     private String cardNumber;
-    private String cardHolderId;    // Cardholder is a models.customer
+    private String cardHolderId;    // Cardholder is a Customer
     private String policyOwner;     // Organization that purchases the insurance to the models.customer
     private Date expirationDate;
 
@@ -26,6 +26,18 @@ public class InsuranceCard implements Identifiable {
 
     public String getCardNumber() {
         return cardNumber;
+    }
+
+    public String getCardHolderId() {
+        return cardHolderId;
+    }
+
+    public String getPolicyOwner() {
+        return policyOwner;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
     }
 
     @Override

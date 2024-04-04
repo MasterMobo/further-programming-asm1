@@ -21,6 +21,14 @@ public interface CustomerManager {
     // Use this method ONLY if you are sure that the returned ID will be used to set Customer ID.
     String generateAndAddId();
 
+    // Get a customer from any role
+    Customer get(String customerId);
+
+    // Checks if a customer of any role exists
+    boolean exists(String customerId);
+
+    boolean hasInsuranceCard(String customerId);
+
     PolicyHolderManager getPolicyHolders();
     DependentManager getDependents();
 }

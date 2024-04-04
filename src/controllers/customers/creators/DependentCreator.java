@@ -19,7 +19,6 @@ public class DependentCreator extends CustomerCreator{
     @Override
     public Customer create(Map<String, String> data) {
         PolicyHolderManager policyHolders = customerManager.getPolicyHolders();
-        DependentManager dependents = customerManager.getDependents();
 
         String dependsOn = data.get(DependentView.DEPENDS_ON);
 

@@ -1,7 +1,9 @@
 package views.general;
 
 import models.customer.Customer;
+import models.customer.CustomerRoleManager;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CustomerView {
@@ -12,5 +14,8 @@ public interface CustomerView {
     void displayCustomer(Customer customer);
     Map<String, String> displayCreateCustomerForm();
     String displayRoleSelect();
-    void displayError(String message);
+
+    // TODO: Messages should be in a separate class
+    void displayMessage(String s);
+    void displayError(String s);
 }

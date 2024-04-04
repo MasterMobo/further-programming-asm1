@@ -11,16 +11,17 @@ import views.general.CustomerViewFactory;
 import java.util.Map;
 
 public class CustomerController {
-    // Models
+    // Model
     private CustomerManager customerManager;
+
     // Views
     private CustomerViewFactory viewFactory;    // This factory decides which type of view we are using (e.g, text, GUI)
     private CustomerView customerView;
 
     // Helper classes
     private CustomerCreator customerCreator;    // Used to create customer of different roles
-    private final CustomerCreatorFactory creatorFactory;  // Used to create CustomerCreator depending on role needed
-    private CustomerAdder customerAdder;
+    private CustomerCreatorFactory creatorFactory;  // Used to create CustomerCreator depending on role needed
+    private CustomerAdder customerAdder;  // Used to add customer to the correct role manager
 
     public CustomerController(CustomerManager customerManager, CustomerViewFactory viewFactory) {
         this.customerManager = customerManager;
@@ -33,6 +34,8 @@ public class CustomerController {
     }
 
     public Customer createCustomer() {
+        customerView.displayMessage("Creating Customer...");
+
         // Get the role from user input
         String role = customerView.displayRoleSelect();
 
@@ -52,9 +55,11 @@ public class CustomerController {
         // Customer can be null if creation failed
         if (newCustomer == null) return null;
 
+        // Add new customer to the manager
         newCustomer = customerAdder.add(role, newCustomer);
 
         // Display newly added customer
+        customerView.displayMessage("Successfully added new customer:");
         customerView.displayCustomer(newCustomer);
 
         return newCustomer;
