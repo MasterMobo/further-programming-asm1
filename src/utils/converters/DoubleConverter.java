@@ -1,4 +1,4 @@
-package views.ui.inputs;
+package utils.converters;
 
 public class DoubleConverter extends TypeConverter<Double>{
 

@@ -1,4 +1,4 @@
-package views.ui.inputs;
+package utils.converters;
 
 public class StringConverter extends TypeConverter<String>{
 

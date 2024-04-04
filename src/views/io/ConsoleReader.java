@@ -1,4 +1,4 @@
-package views.ui.inputs;
+package views.io;
 
 import java.util.Scanner;
 

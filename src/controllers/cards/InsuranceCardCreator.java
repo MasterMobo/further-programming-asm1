@@ -5,8 +5,8 @@ import models.card.InsuranceCardManager;
 import models.customer.Customer;
 import models.customer.CustomerManager;
 import views.general.InsuranceCardView;
-import views.ui.inputs.DateConverter;
-import views.ui.inputs.TypeConverter;
+import utils.converters.DateConverter;
+import utils.converters.TypeConverter;
 
 import java.util.Date;
 import java.util.Map;
@@ -45,10 +45,12 @@ public class InsuranceCardCreator {
             Customer cardHolder = customerManager.get(cardHolderId);
             cardHolder.setInsuranceCardNumber(cardNumber);
 
-            return new InsuranceCard(cardNumber, cardHolderId, policyOwner, exipryDate);
+            InsuranceCard newCard = new InsuranceCard(cardNumber, cardHolderId, policyOwner, exipryDate);
+
+            return cardManager.add(newCard);
 
         } catch (Error e) {
-            cardView.displayError("Invalid Date Format");
+            cardView.displayError("Invalid Date");
             return null;
         }
 

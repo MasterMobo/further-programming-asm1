@@ -12,7 +12,6 @@ public class InsuranceCardController {
     InsuranceCardView cardView; // View
     CustomerManager customerManager;
     InsuranceCardCreator cardCreator;
-    InsuranceCardAdder cardAdder;
 
     public InsuranceCardController(InsuranceCardManager cardManager, CustomerManager customerManager, InsuranceCardView cardView) {
         this.cardManager = cardManager;
@@ -20,21 +19,19 @@ public class InsuranceCardController {
         this.cardView = cardView;
 
         cardCreator =  new InsuranceCardCreator(cardManager, customerManager, cardView);
-        cardAdder = new InsuranceCardAdder(cardManager);
     }
 
     public InsuranceCard createCard() {
         cardView.displayMessage("Creating Insurance Card...");
 
         Map<String, String> data = cardView.displayCreateCardForm();
-        InsuranceCard card = cardCreator.create(data);
+        InsuranceCard newCard = cardCreator.create(data);
 
-        // Card might be null if creation failed
-        if (card == null) {
+        if (newCard == null) {
             return null;
         }
 
-        InsuranceCard newCard = cardAdder.add(card);
+        cardView.displayMessage("Successfully added new insurance card:");
         cardView.displayCard(newCard);
 
         return newCard;

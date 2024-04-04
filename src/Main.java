@@ -7,8 +7,8 @@ import models.customer.dependent.DependentMap;
 import models.customer.holder.PolicyHolderMap;
 import views.text.cards.InsuranceCardTextView;
 import views.text.customers.CustomerTextViewFactory;
-import views.ui.inputs.ConsoleReader;
-import views.ui.inputs.DataReader;
+import views.io.ConsoleReader;
+import views.io.DataReader;
 
 public class Main {
     public static void main(String[] args) {

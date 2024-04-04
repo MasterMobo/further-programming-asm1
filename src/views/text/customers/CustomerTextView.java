@@ -2,8 +2,8 @@ package views.text.customers;
 
 import models.customer.CustomerRoleCode;
 import views.general.CustomerView;
-import views.ui.inputs.ConsoleReader;
-import views.ui.inputs.DataReader;
+import views.io.ConsoleReader;
+import views.io.DataReader;
 
 public abstract class CustomerTextView implements CustomerView {
     @Override

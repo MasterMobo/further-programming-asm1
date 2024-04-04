@@ -1,8 +1,8 @@
 package views.text.customers;
 
 import models.customer.Customer;
-import views.ui.inputs.ConsoleReader;
-import views.ui.inputs.DataReader;
+import views.io.ConsoleReader;
+import views.io.DataReader;
 
 import java.util.HashMap;
 import java.util.Map;
