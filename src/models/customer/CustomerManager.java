@@ -4,6 +4,13 @@ import models.customer.dependent.DependentManager;
 import models.customer.holder.PolicyHolderManager;
 
 public interface CustomerManager {
+    // This interfaces manages customers of ALL roles within the system
+    // By default, the system will always have 2 roles (PolicyHolders and Dependents)
+    // If you wish to add more roles, use addRoleManager()
+    // Remember to add appropriate methods to access new roles
+
+    // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
+    void addRoleManager(CustomerRoleManager roleManager);
 
     // Generates a unique ID across all user roles.
     // This method will NOT add the returned ID to the ID set.
@@ -21,14 +28,16 @@ public interface CustomerManager {
     // Use this method ONLY if you are sure that the returned ID will be used to set Customer ID.
     String generateAndAddId();
 
-    // Get a customer from any role
+    // Get a customer with the provided ID from any role
     Customer get(String customerId);
 
-    // Checks if a customer of any role exists
+    // Checks if a customer with the provided ID of any role exists
     boolean exists(String customerId);
 
+    // Check if the customer with the provided ID has an insurance card
     boolean hasInsuranceCard(String customerId);
 
+    // Accessing role managers
     PolicyHolderManager getPolicyHolders();
     DependentManager getDependents();
 }

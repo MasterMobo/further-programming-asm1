@@ -10,27 +10,37 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// TODO: find a better name for this
-public class CustomerRoleList implements CustomerManager{
+public class CustomerManagementSystem implements CustomerManager{
+    // This class manages customer of ALL roles within the system
+    // By default, the system will always have 2 roles (PolicyHolders and Dependents)
+    // If you wish to add more roles, use addRoleManager()
+    // Remember to add methods to access new roles
 
-    // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
-    private final Set<String> customerIds;
-    private final List<CustomerRoleManager> customerRoles;
-    private final IdGenerator idGenerator;
+    private final Set<String> customerIds;     // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
+    private final List<CustomerRoleManager> customerRoles;  // A list containing all the role managers. It defines what user role exists within the system.
+    private final IdGenerator idGenerator;  // User ID format is shared between all CustomerManagers, therefore this IdGenerator is also shared.
 
-    public CustomerRoleList() {
+    public CustomerManagementSystem() {
         customerIds = new HashSet<>();
         customerRoles = new ArrayList<>();
         idGenerator = new PrefixIdGenerator("c", 10);
     }
 
-    public CustomerRoleList(PolicyHolderManager policyHolders, DependentManager dependents) {
+    public CustomerManagementSystem(PolicyHolderManager policyHolders, DependentManager dependents) {
         customerIds = new HashSet<>();
         idGenerator = new PrefixIdGenerator("c", 10);
 
         customerRoles = new ArrayList<>();
+        // Default roles
         customerRoles.add(policyHolders);
         customerRoles.add(dependents);
+    }
+
+    @Override
+    public void addRoleManager(CustomerRoleManager roleManager) {
+        // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
+
+        customerRoles.add(roleManager);
     }
 
     @Override
