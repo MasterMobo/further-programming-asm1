@@ -5,24 +5,22 @@ import models.customer.holder.PolicyHolderManager;
 import models.id.IdGenerator;
 import models.id.PrefixIdGenerator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class CustomerManagementSystem implements CustomerManager{
-    // This class manages customer of ALL roles within the system
+    // This class manages customer of ALL roles within the system.
+    // This class uses a map to keep track of different user roles. Each role has a unique role code defined in CustomerRoleCode.
     // By default, the system will always have 2 roles (PolicyHolders and Dependents)
     // If you wish to add more roles, use addRoleManager()
     // Remember to add methods to access new roles
 
     private final Set<String> customerIds;     // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
-    private final List<CustomerRoleManager> customerRoles;  // A list containing all the role managers. It defines what user role exists within the system.
+    private final Map<String, CustomerRoleManager> customerRoles;  // This maps a unique role code to a role manager. All customer roles in the system should be present here.
     private final IdGenerator idGenerator;  // User ID format is shared between all CustomerManagers, therefore this IdGenerator is also shared.
 
     public CustomerManagementSystem() {
         customerIds = new HashSet<>();
-        customerRoles = new ArrayList<>();
+        customerRoles = new HashMap<>();
         idGenerator = new PrefixIdGenerator("c", 10);
     }
 
@@ -30,17 +28,23 @@ public class CustomerManagementSystem implements CustomerManager{
         customerIds = new HashSet<>();
         idGenerator = new PrefixIdGenerator("c", 10);
 
-        customerRoles = new ArrayList<>();
+        customerRoles = new HashMap<>();
         // Default roles
-        customerRoles.add(policyHolders);
-        customerRoles.add(dependents);
+        customerRoles.put(CustomerRoleCode.POLICYHOLDER, policyHolders);
+        customerRoles.put(CustomerRoleCode.DEPENDENT, dependents);
+    }
+
+
+    @Override
+    public void addRoleManager(String roleCode, CustomerRoleManager roleManager) {
+        // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
+        customerRoles.put(roleCode, roleManager);
     }
 
     @Override
-    public void addRoleManager(CustomerRoleManager roleManager) {
-        // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
-
-        customerRoles.add(roleManager);
+    public CustomerRoleManager getManager(String roleCode) {
+        // Get the manager corresponding to the role code
+        return customerRoles.get(roleCode);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class CustomerManagementSystem implements CustomerManager{
     @Override
     public Customer get(String customerId) {
         // Since this class contains customers of all roles. We need to check if the id is contained in any role manager.
-        for (CustomerRoleManager manager: customerRoles) {
+        for (CustomerRoleManager manager: customerRoles.values()) {
             Customer customer = (Customer) manager.get(customerId);
             if (customer != null) return customer;
         }
@@ -98,11 +102,4 @@ public class CustomerManagementSystem implements CustomerManager{
         return get(customerId).hasInsuranceCard();
     }
 
-    public PolicyHolderManager getPolicyHolders() {
-        return (PolicyHolderManager) customerRoles.get(0);
-    }
-
-    public DependentManager getDependents() {
-        return (DependentManager) customerRoles.get(1);
-    }
 }

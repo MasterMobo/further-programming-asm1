@@ -21,7 +21,6 @@ public class CustomerController {
     // Helper classes
     private CustomerCreator customerCreator;    // Used to create customer of different roles
     private CustomerCreatorFactory creatorFactory;  // Used to create CustomerCreator depending on role needed
-    private CustomerAdder customerAdder;  // Used to add customer to the correct role manager
 
     public CustomerController(CustomerManager customerManager, CustomerViewFactory viewFactory) {
         this.customerManager = customerManager;
@@ -29,7 +28,6 @@ public class CustomerController {
 
         creatorFactory = new CustomerCreatorFactory();
         customerCreator = creatorFactory.createCreator();
-        customerAdder = new CustomerAdder(customerManager);
         customerView = viewFactory.createView();
     }
 
@@ -54,9 +52,6 @@ public class CustomerController {
 
         // Customer can be null if creation failed
         if (newCustomer == null) return null;
-
-        // Add new customer to the manager
-        newCustomer = customerAdder.add(role, newCustomer);
 
         // Display newly added customer
         customerView.displayMessage("Successfully added new customer:");

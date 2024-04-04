@@ -1,5 +1,6 @@
 package models.customer;
 
+// TODO: clean this up
 public interface CustomerRoleCode {
     String POLICYHOLDER = "ph";
     String DEPENDENT = "dp";

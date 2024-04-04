@@ -10,7 +10,8 @@ public interface CustomerManager {
     // Remember to add appropriate methods to access new roles
 
     // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
-    void addRoleManager(CustomerRoleManager roleManager);
+    void addRoleManager(String roleCode, CustomerRoleManager roleManager);
+    CustomerRoleManager getManager(String roleCode);
 
     // Generates a unique ID across all user roles.
     // This method will NOT add the returned ID to the ID set.
@@ -36,8 +37,4 @@ public interface CustomerManager {
 
     // Check if the customer with the provided ID has an insurance card
     boolean hasInsuranceCard(String customerId);
-
-    // Accessing role managers
-    PolicyHolderManager getPolicyHolders();
-    DependentManager getDependents();
 }
