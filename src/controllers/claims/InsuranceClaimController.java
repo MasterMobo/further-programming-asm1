@@ -1,39 +1,41 @@
 package controllers.claims;
 
-import models.card.InsuranceCard;
-import models.card.InsuranceCardManager;
-import models.claims.ClaimProcessManager;
+import controllers.AddableController;
+import controllers.Controller;
 import models.claims.InsuranceClaim;
-import models.customer.CustomerManager;
+import models.system.SystemManager;
 import views.general.InsuranceClaimView;
+import views.general.MessageView;
+import views.general.SystemView;
 
 import java.util.Map;
 
-public class InsuranceClaimController {
-    private ClaimProcessManager claimManager;   // Model
-    private InsuranceClaimView claimView;
+public class InsuranceClaimController extends Controller<InsuranceClaim> implements AddableController<InsuranceClaim> {
+    private InsuranceClaimCreator creator;
 
-    private CustomerManager customerManager;
-    private InsuranceClaimCreator claimCreator;
-
-    public InsuranceClaimController(ClaimProcessManager claimManager, InsuranceClaimView claimView, CustomerManager customerManager) {
-        this.claimManager = claimManager;
-        this.claimView = claimView;
-        this.customerManager = customerManager;
-
-        claimCreator = new InsuranceClaimCreator(claimManager, claimView, customerManager);
+    public InsuranceClaimController() {
+        creator = new InsuranceClaimCreator();
     }
 
-    public InsuranceClaim createClaim() {
-        claimView.displayMessage("Creating new claim...");
+    public InsuranceClaimController(SystemManager systemManager, SystemView systemView) {
+        this.systemManager = systemManager;
+        this.systemView = systemView;
+        creator = new InsuranceClaimCreator(systemManager, systemView);
+    }
 
-        Map<String, String> data = claimView.displayCreateClaimForm();
-        InsuranceClaim newClaim = claimCreator.create(data);
+    // TODO: All theses add() methods are the same, should just abstract
+    @Override
+    public InsuranceClaim add() {
+        InsuranceClaimView claimView = systemView.getInsuranceClaimView();
+
+        Map<String, String> data = claimView.displayAddForm();
+        InsuranceClaim newClaim = creator.create(data);
 
         if (newClaim == null) return null;
 
-        claimView.displayMessage("Successfully added new insurance claim:");
-        claimView.displayInsuranceClaim(newClaim);
+        claimView.displaySuccessAddMsg();
+        claimView.displayItem(newClaim);
+
         return newClaim;
     }
 }

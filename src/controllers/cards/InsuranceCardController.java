@@ -1,38 +1,38 @@
 package controllers.cards;
 
+import controllers.Controller;
+import controllers.AddableController;
 import models.card.InsuranceCard;
-import models.card.InsuranceCardManager;
-import models.customer.CustomerManager;
+import models.system.SystemManager;
 import views.general.InsuranceCardView;
+import views.general.MessageView;
+import views.general.SystemView;
 
 import java.util.Map;
 
-public class InsuranceCardController {
-    InsuranceCardManager cardManager; // Model
-    InsuranceCardView cardView; // View
-    CustomerManager customerManager;
-    InsuranceCardCreator cardCreator;
-
-    public InsuranceCardController(InsuranceCardManager cardManager, CustomerManager customerManager, InsuranceCardView cardView) {
-        this.cardManager = cardManager;
-        this.customerManager = customerManager;
-        this.cardView = cardView;
-
-        cardCreator =  new InsuranceCardCreator(cardManager, customerManager, cardView);
+public class InsuranceCardController extends Controller<InsuranceCard> implements AddableController<InsuranceCard> {
+    private InsuranceCardCreator creator;
+    public InsuranceCardController() {
+        super();
+        creator = new InsuranceCardCreator();
     }
 
-    public InsuranceCard createCard() {
-        cardView.displayMessage("Creating Insurance Card...");
+    public InsuranceCardController(SystemManager systemManager, SystemView systemView) {
+        super(systemManager, systemView);
+        creator = new InsuranceCardCreator(systemManager, systemView);
+    }
 
-        Map<String, String> data = cardView.displayCreateCardForm();
-        InsuranceCard newCard = cardCreator.create(data);
+    @Override
+    public InsuranceCard add() {
+        InsuranceCardView cardView = systemView.getInsuranceCardView();
 
-        if (newCard == null) {
-            return null;
-        }
+        Map<String, String> data = cardView.displayAddForm();
+        InsuranceCard newCard = creator.create(data);
 
-        cardView.displayMessage("Successfully added new insurance card:");
-        cardView.displayCard(newCard);
+        if (newCard == null) return null;
+
+        cardView.displaySuccessAddMsg();
+        cardView.displayItem(newCard);
 
         return newCard;
     }

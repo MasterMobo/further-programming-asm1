@@ -11,7 +11,7 @@ import java.util.Map;
 public class InsuranceCardTextView implements InsuranceCardView {
 
     @Override
-    public void displayCard(InsuranceCard card) {
+    public void displayItem(InsuranceCard card) {
         System.out.println("Insurance Card (" + card.getCardNumber() +"): ");
         System.out.println("\tCard Holder ID: " + card.getCardHolderId() );
         System.out.println("\tPolicy Owner: " + card.getPolicyOwner());
@@ -19,9 +19,11 @@ public class InsuranceCardTextView implements InsuranceCardView {
     }
 
     @Override
-    public Map<String, String> displayCreateCardForm() {
+    public Map<String, String> displayAddForm() {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
+
+        System.out.println("---Adding new Insurance Card---");
 
         System.out.print("Enter Card Holder ID: ");
         String cardHolder = reader.read();
@@ -40,12 +42,7 @@ public class InsuranceCardTextView implements InsuranceCardView {
     }
 
     @Override
-    public void displayMessage(String s) {
-        System.out.println(s);
-    }
-
-    @Override
-    public void displayError(String s) {
-        System.out.println(s);
+    public void displaySuccessAddMsg() {
+        System.out.println("Successfully added new Insurance Card!");
     }
 }

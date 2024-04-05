@@ -1,13 +1,16 @@
 package controllers.claims;
 
-import models.claims.ClaimProcessManager;
+import models.claims.InsuranceClaimManager;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;
 import models.customer.CustomerManager;
+import models.system.SystemManager;
 import utils.converters.DateConverter;
 import utils.converters.DoubleConverter;
 import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
+import views.general.MessageView;
+import views.general.SystemView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,38 +18,52 @@ import java.util.List;
 import java.util.Map;
 
 public class InsuranceClaimCreator {
-    private ClaimProcessManager claimManager;
-    private InsuranceClaimView claimView;
-    private CustomerManager customerManager;
+    private SystemManager systemManager;
+    private SystemView systemView;
 
-    public InsuranceClaimCreator(ClaimProcessManager claimManager, InsuranceClaimView claimView, CustomerManager customerManager) {
-        this.claimManager = claimManager;
-        this.claimView = claimView;
-        this.customerManager = customerManager;
+    public InsuranceClaimCreator() {
+    }
+
+    public InsuranceClaimCreator(SystemManager systemManager, SystemView systemView) {
+        this.systemManager = systemManager;
+        this.systemView = systemView;
     }
 
     public InsuranceClaim create(Map<String, String> data) {
-        String insuredPersonId = data.get(InsuranceClaimView.INSURED_PERSON);
+        // Get the managers
+        CustomerManager customerManager = systemManager.getCustomerManager();
+        InsuranceClaimManager claimManager = systemManager.getClaimManager();
+
+        // Get the views
+        InsuranceClaimView claimView = systemView.getInsuranceClaimView();
+        MessageView messageView = systemView.getMessageView();
+
+        // Get the converters
         TypeConverter<Date> dateConverter = new DateConverter();
         TypeConverter<Double> doubleConverter = new DoubleConverter();
 
+        // Get Customer ID
+        String insuredPersonId = data.get(InsuranceClaimView.INSURED_PERSON);
+
         if (!customerManager.exists(insuredPersonId)) {
-            claimView.displayError("Customer does not exist");
+            messageView.displayError("Customer does not exist");
             return null;
         }
 
         if (!customerManager.hasInsuranceCard(insuredPersonId)) {
-            claimView.displayError("This customer does not have an insurance card");
+            messageView.displayError("This customer does not have an insurance card");
             return null;
         }
 
+        // Get remaining claim info
         String cardNum = customerManager.getCardNumber(insuredPersonId);
         List<String> documentNames = parseDocuments(data.get(InsuranceClaimView.DOCUMENTS));
         String bankInfo = data.get(InsuranceClaimView.RECEIVER_BANK);
         double claimAmount = doubleConverter.fromString(data.get(InsuranceClaimView.CLAIM_AMOUNT));
 
+        // Try-catch here to catch Date and Status errors
         try {
-            InsuranceClaimStatus claimStatus = InsuranceClaimStatus.valueOf(data.get(InsuranceClaimView.CLAIM_STATUS));
+            InsuranceClaimStatus claimStatus = InsuranceClaimStatus.valueOf(data.get(InsuranceClaimView.CLAIM_STATUS).trim().toUpperCase());
             Date claimDate = dateConverter.fromString(data.get(InsuranceClaimView.CLAIM_DATE));
             Date examDate = dateConverter.fromString(data.get(InsuranceClaimView.EXAM_DATE));
 
@@ -59,12 +76,12 @@ public class InsuranceClaimCreator {
 
         } catch (IllegalArgumentException e) {
             if (e.getMessage().contains("enum")) {
-                claimView.displayError("Invalid Status");
+                messageView.displayError("Invalid Status");
                 return null;
             }
 
             // The remaining exception should be from date conversion
-            claimView.displayError("Invalid Date");
+            messageView.displayError("Invalid Date");
             return null;
         }
     }
@@ -76,7 +93,7 @@ public class InsuranceClaimCreator {
     private List<String> formatDocumentNames(String claimId, String cardNum, List<String> documentNames) {
         List<String> res = new ArrayList<>();
         for (String documentName: documentNames) {
-            res.add(claimId + "_" + cardNum + "_" + documentName);
+            res.add(claimId + "_" + cardNum + "_" + documentName + ".pdf");
         }
 
         return res;

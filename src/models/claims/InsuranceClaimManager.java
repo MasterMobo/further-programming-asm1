@@ -2,6 +2,6 @@ package models.claims;
 
 import models.id.IdManager;
 
-public interface ClaimProcessManager extends IdManager<InsuranceClaim> {
+public interface InsuranceClaimManager extends IdManager<InsuranceClaim> {
     InsuranceClaim getOne(String claimId);
 }

@@ -9,24 +9,29 @@ import java.util.*;
 
 public class CustomerManagementSystem implements CustomerManager{
     // This class manages customer of ALL roles within the system.
-    // This class uses a map to keep track of different user roles. Each role has a unique role code defined in CustomerRoleCode.
+    // This class uses a map to keep track of different CustomerRoleManager. Each role manager has a unique role code defined in CustomerRoleCode.
+    // To access a role, use getManager() with correct role code.
+
     // By default, the system will always have 2 roles (PolicyHolders and Dependents)
-    // If you wish to add more roles, use addRoleManager()
-    // Remember to add methods to access new roles
+    // If you wish to add more roles, first define the role code in CustomerRoleCode, then use addRoleManager()
+
+    // The reason this class has such different implementation from other IdManagers is because Customer ID need to be unique across different CustomerRoleManager
+    // Since we don't know how many CustomerRoleManager could be added to the system in the future, we need a scalable way of checking ID.
+    // This is the purpose of the customerIds set.
 
     private final Set<String> customerIds;     // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
-    private final Map<String, CustomerRoleManager> customerRoles;  // This maps a unique role code to a role manager. All customer roles in the system should be present here.
+    private final Map<CustomerRoleCode, CustomerRoleManager> customerRoles;  // This maps a unique role code to a role manager. All customer roles in the system should be present here.
     private final IdGenerator idGenerator;  // User ID format is shared between all CustomerManagers, therefore this IdGenerator is also shared.
 
     public CustomerManagementSystem() {
         customerIds = new HashSet<>();
         customerRoles = new HashMap<>();
-        idGenerator = new PrefixIdGenerator("c", 10);
+        idGenerator = new PrefixIdGenerator("c", 7);
     }
 
     public CustomerManagementSystem(PolicyHolderManager policyHolders, DependentManager dependents) {
         customerIds = new HashSet<>();
-        idGenerator = new PrefixIdGenerator("c", 10);
+        idGenerator = new PrefixIdGenerator("c", 7);
 
         customerRoles = new HashMap<>();
         // Default roles
@@ -36,13 +41,13 @@ public class CustomerManagementSystem implements CustomerManager{
 
 
     @Override
-    public void addRoleManager(String roleCode, CustomerRoleManager roleManager) {
+    public void addRoleManager(CustomerRoleCode roleCode, CustomerRoleManager roleManager) {
         // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
         customerRoles.put(roleCode, roleManager);
     }
 
     @Override
-    public CustomerRoleManager getManager(String roleCode) {
+    public CustomerRoleManager getManager(CustomerRoleCode roleCode) {
         // Get the manager corresponding to the role code
         return customerRoles.get(roleCode);
     }

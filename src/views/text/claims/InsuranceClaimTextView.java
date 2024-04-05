@@ -15,19 +15,20 @@ import java.util.Map;
 public class InsuranceClaimTextView implements InsuranceClaimView {
 
     @Override
-    public void displayInsuranceClaim(InsuranceClaim claim) {
+    public void displayItem(InsuranceClaim claim) {
         // TODO: fill this out
         System.out.println("Insurance Claim: " + claim.getId());
     }
 
     @Override
-    public Map<String, String> displayCreateClaimForm() {
+    public Map<String, String> displayAddForm() {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
 
+        System.out.println("---Adding new Insurance Claim---");
+
         System.out.print("Enter Insured Customer Id: ");
         data.put(INSURED_PERSON, reader.read());
-
 
         System.out.print("Enter Claim Date: ");
         data.put(CLAIM_DATE, reader.read());
@@ -38,10 +39,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         System.out.print("Enter Claim Amount: ");
         data.put(CLAIM_AMOUNT, reader.read());
 
-        System.out.print("Enter Claim Status: ");
+        System.out.print("Enter Claim Status (new, done, processing): ");
         data.put(CLAIM_STATUS, reader.read());
 
-        System.out.print("Enter Receiver Bank Info: ");
+        System.out.println("Enter Receiver Bank Info (Bank – Name – Number): ");
         data.put(RECEIVER_BANK, reader.read());
 
         String documents = displayDocumentCreateForm();
@@ -49,16 +50,6 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         data.put(DOCUMENTS, documents);
 
         return data;
-    }
-
-    @Override
-    public void displayMessage(String s) {
-        System.out.println(s);
-    }
-
-    @Override
-    public void displayError(String s) {
-        System.out.println(s);
     }
 
     private String displayDocumentCreateForm() {
@@ -77,5 +68,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         }
 
         return documents.toString();
+    }
+
+    @Override
+    public void displaySuccessAddMsg() {
+        System.out.println("Successfully added new Insurance Claim!");
     }
 }

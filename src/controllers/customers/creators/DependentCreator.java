@@ -7,19 +7,30 @@ import models.customer.dependent.Dependent;
 import models.customer.dependent.DependentManager;
 import models.customer.holder.PolicyHolder;
 import models.customer.holder.PolicyHolderManager;
+import models.system.SystemManager;
+import views.general.MessageView;
+import views.general.SystemView;
 import views.general.customers.CustomerView;
 import views.general.customers.DependentView;
 
 import java.util.Map;
 
 public class DependentCreator extends CustomerCreator{
-    public DependentCreator(CustomerManager customerManager, CustomerView customerView) {
-        super(customerManager, customerView);
+
+    public DependentCreator() {
+        super();
+    }
+
+    public DependentCreator(SystemManager systemManager, SystemView systemView) {
+        super(systemManager, systemView);
     }
 
     @Override
     public Customer create(Map<String, String> data) {
+        MessageView messageView = systemView.getMessageView();
+
         // Get the managers
+        CustomerManager customerManager = systemManager.getCustomerManager();
         PolicyHolderManager policyHolders = (PolicyHolderManager) customerManager.getManager(CustomerRoleCode.POLICYHOLDER);
         DependentManager dependents = (DependentManager) customerManager.getManager(CustomerRoleCode.DEPENDENT);
 
@@ -27,7 +38,7 @@ public class DependentCreator extends CustomerCreator{
 
         // Check if policy-holder ID is valid
         if (!policyHolders.exists(dependsOn)){
-            customerView.displayError("Policy Holder does not exist. Customer creation failed.");
+            messageView.displayError("Policy Holder does not exist. Customer creation failed.");
             return null;
         }
 

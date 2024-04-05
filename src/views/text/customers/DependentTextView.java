@@ -10,14 +10,16 @@ import java.util.Map;
 
 public class DependentTextView extends CustomerTextView implements DependentView {
     @Override
-    public void displayCustomer(Customer customer) {
+    public void displayItem(Customer customer) {
         System.out.println("Dependent(" + customer.getId() + "): " + customer.getFullName());
     }
 
     @Override
-    public Map<String, String> displayCreateCustomerForm() {
+    public Map<String, String> displayAddForm() {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
+
+        System.out.println("---Adding new Dependent---");
 
         System.out.print("Enter Policy Holder ID: ");
         String dependsOn = reader.read();
@@ -28,6 +30,11 @@ public class DependentTextView extends CustomerTextView implements DependentView
         data.put(DEPENDS_ON, dependsOn);
         data.put(CUSTOMER_NAME, name);
         return data;
+    }
+
+    @Override
+    public void displaySuccessAddMsg() {
+        System.out.println("Successfully added new Dependent!");
     }
 
 }

@@ -10,8 +10,8 @@ public interface CustomerManager {
     // Remember to add appropriate methods to access new roles
 
     // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
-    void addRoleManager(String roleCode, CustomerRoleManager roleManager);
-    CustomerRoleManager getManager(String roleCode);
+    void addRoleManager(CustomerRoleCode roleCode, CustomerRoleManager roleManager);
+    CustomerRoleManager getManager(CustomerRoleCode roleCode);
 
     // Generates a unique ID across all user roles.
     // This method will NOT add the returned ID to the ID set.

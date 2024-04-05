@@ -4,34 +4,42 @@ import models.card.InsuranceCard;
 import models.card.InsuranceCardManager;
 import models.customer.Customer;
 import models.customer.CustomerManager;
+import models.system.SystemManager;
 import views.general.InsuranceCardView;
 import utils.converters.DateConverter;
 import utils.converters.TypeConverter;
+import views.general.MessageView;
+import views.general.SystemView;
 
 import java.util.Date;
 import java.util.Map;
 
 public class InsuranceCardCreator {
-    private InsuranceCardManager cardManager;
-    private CustomerManager customerManager;
-    private InsuranceCardView cardView;
+    private SystemManager systemManager;
+    private SystemView systemView;
 
-    public InsuranceCardCreator(InsuranceCardManager cardManager, CustomerManager customerManager, InsuranceCardView cardView) {
-        this.cardManager = cardManager;
-        this.customerManager = customerManager;
-        this.cardView = cardView;
+    public InsuranceCardCreator() {
+    }
+
+    public InsuranceCardCreator(SystemManager systemManager, SystemView systemView) {
+        this.systemManager = systemManager;
+        this.systemView = systemView;
     }
 
     public InsuranceCard create(Map<String, String> data) {
+        MessageView messageView = systemView.getMessageView();
+        CustomerManager customerManager = systemManager.getCustomerManager();
+        InsuranceCardManager cardManager = systemManager.getCardManager();
+
         String cardHolderId = data.get(InsuranceCardView.CARD_HOLDER);
 
         if (!customerManager.exists(cardHolderId)) {
-            cardView.displayError("Card Holder does not exist");
+            messageView.displayError("Card Holder does not exist");
             return null;
         }
 
         if (customerManager.hasInsuranceCard(cardHolderId)) {
-            cardView.displayError("Card Holder already has an Insurance Card");
+            messageView.displayError("Card Holder already has an Insurance Card");
             return null;
         }
 
@@ -50,7 +58,7 @@ public class InsuranceCardCreator {
             return cardManager.add(newCard);
 
         } catch (Exception e) {
-            cardView.displayError("Invalid Date");
+            messageView.displayError("Invalid Date");
             return null;
         }
 

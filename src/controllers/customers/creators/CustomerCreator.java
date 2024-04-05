@@ -2,6 +2,8 @@ package controllers.customers.creators;
 
 import models.customer.Customer;
 import models.customer.CustomerManager;
+import models.system.SystemManager;
+import views.general.SystemView;
 import views.general.customers.CustomerView;
 
 import java.util.Map;
@@ -10,12 +12,15 @@ public abstract class CustomerCreator {
     // This class deals with the creation logic for every customer role in the system.
     // Extend this class to customize how different roles are created.
 
-    protected CustomerManager customerManager;  // The manager used to create the instances
-    protected CustomerView customerView;    // View to display messages if needed.
+    protected SystemManager systemManager;
+    protected SystemView systemView;
 
-    public CustomerCreator(CustomerManager customerManager, CustomerView customerView) {
-        this.customerManager = customerManager;
-        this.customerView = customerView;
+    public CustomerCreator() {
+    }
+
+    public CustomerCreator(SystemManager systemManager, SystemView systemView) {
+        this.systemManager = systemManager;
+        this.systemView = systemView;
     }
 
     // Creates a new Customer.
