@@ -10,7 +10,7 @@ import views.general.customers.CustomerViewFactory;
 
 import java.util.Map;
 
-public class CustomerController {
+public abstract class CustomerController {
     // Model
     private CustomerManager customerManager;
 
