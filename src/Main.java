@@ -1,23 +1,5 @@
-import controllers.cards.InsuranceCardController;
-import controllers.claims.InsuranceClaimController;
-import controllers.customers.CustomerController;
-import controllers.customers.DependentController;
-import controllers.customers.PolicyHolderController;
-import models.card.InsuranceCardMapStorage;
-import models.claims.InsuranceClaimMapStorage;
-import models.customer.CustomerStorageManager;
-import models.customer.CustomerStorageMap;
-import models.customer.roles.dependent.DependentMapStorage;
-import models.customer.roles.holder.PolicyHolderMapStorage;
-import models.system.SystemStorageMap;
-import models.system.SystemStorageManager;
-import views.factories.TextViewFactory;
-import views.factories.ViewFactory;
-import views.system.SystemViewManager;
-import views.io.ConsoleReader;
-import views.io.DataReader;
-import views.system.SystemViewMap;
-import views.ui.Option;
+import views.ui.options.OptionManager;
+import views.ui.options.OptionTree;
 
 // TODO: Global (or at least entry level) try-catch so that program doesn't end when error
 public class Main {
@@ -61,7 +43,7 @@ public class Main {
 //            input = reader.read();
 //        }
 
-        Option o1 =
-
+        OptionManager menu = new OptionTree();
+        menu.execute();
     }
 }
