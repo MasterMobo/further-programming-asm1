@@ -11,7 +11,6 @@ public class SystemStorageMap extends MapStorage<SystemStorable> implements Syst
         super();
     }
 
-
     @Override
     public CustomerStorageManager getCustomerStorageManager() {
         return (CustomerStorageManager) get(StorageCode.CUSTOMERS);

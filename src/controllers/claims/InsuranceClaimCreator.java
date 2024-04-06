@@ -1,6 +1,6 @@
 package controllers.claims;
 
-import controllers.helpers.Creator;
+import controllers.ControllerOperator;
 import models.claims.InsuranceClaimStorage;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;
@@ -18,20 +18,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimCreator implements Creator<InsuranceClaim> {
-    private SystemStorageManager systemStorageManager;
-    private SystemViewManager systemViewManager;
-
+public class InsuranceClaimCreator extends ControllerOperator<InsuranceClaim> {
     public InsuranceClaimCreator() {
+        super();
     }
 
     public InsuranceClaimCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
-        this.systemStorageManager = systemStorageManager;
-        this.systemViewManager = systemViewManager;
+        super(systemStorageManager, systemViewManager);
     }
 
     @Override
-    public InsuranceClaim create(Map<String, String> data) {
+    public InsuranceClaim execute(Map<String, String> data) {
         // Get the storages
         CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
         InsuranceClaimStorage claimStorage = systemStorageManager.getClaimStorage();

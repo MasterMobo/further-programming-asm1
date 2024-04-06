@@ -21,7 +21,7 @@ public class PolicyHolderCreator extends CustomerCreator{
     }
 
     @Override
-    public Customer create(Map<String, String> data) {
+    public Customer execute(Map<String, String> data) {
         CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
 
         String id = customerStorageManager.generateAndAddId();

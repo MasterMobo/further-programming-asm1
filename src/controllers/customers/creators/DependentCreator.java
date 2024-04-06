@@ -25,7 +25,7 @@ public class DependentCreator extends CustomerCreator{
     }
 
     @Override
-    public Customer create(Map<String, String> data) {
+    public Customer execute(Map<String, String> data) {
         MessageView messageView = systemViewManager.getMessageView();
 
         // Get the storages

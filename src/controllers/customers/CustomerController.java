@@ -8,7 +8,6 @@ import models.system.SystemStorageManager;
 import views.system.SystemViewManager;
 
 public abstract class CustomerController extends Controller<Customer> implements AddableController<Customer> {
-    protected CustomerCreator creator;
     public CustomerController() {
         super();
     }

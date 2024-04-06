@@ -1,6 +1,6 @@
 package controllers.cards;
 
-import controllers.helpers.Creator;
+import controllers.ControllerOperator;
 import models.card.InsuranceCard;
 import models.card.InsuranceCardStorage;
 import models.customer.Customer;
@@ -15,19 +15,16 @@ import views.system.SystemViewManager;
 import java.util.Date;
 import java.util.Map;
 
-public class InsuranceCardCreator implements Creator<InsuranceCard> {
-    private SystemStorageManager systemStorageManager;
-    private SystemViewManager systemViewManager;
-
+public class InsuranceCardCreator extends ControllerOperator<InsuranceCard> {
     public InsuranceCardCreator() {
+        super();
     }
 
     public InsuranceCardCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
-        this.systemStorageManager = systemStorageManager;
-        this.systemViewManager = systemViewManager;
+        super(systemStorageManager, systemViewManager);
     }
 
-    public InsuranceCard create(Map<String, String> data) {
+    public InsuranceCard execute(Map<String, String> data) {
         MessageView messageView = systemViewManager.getMessageView();
         CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
         InsuranceCardStorage cardStorage = systemStorageManager.getCardStorage();

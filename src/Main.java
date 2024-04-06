@@ -50,7 +50,7 @@ public class Main {
 //            dependentController.add();
             cardController.add();
             claimController.add();
-            claimController.update();
+            claimController.delete();
 
             input = reader.read();
         }

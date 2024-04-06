@@ -1,11 +1,10 @@
 package controllers.claims;
 
-import controllers.helpers.Updater;
+import controllers.ControllerOperator;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;
 import models.claims.InsuranceClaimStorage;
 import models.customer.CustomerStorageManager;
-import models.customer.roles.CustomerRoleStorage;
 import models.system.SystemStorageManager;
 import utils.converters.DateConverter;
 import utils.converters.DoubleConverter;
@@ -19,21 +18,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimUpdater implements Updater<InsuranceClaim> {
-    private SystemStorageManager systemStorageManager;
-    private SystemViewManager systemViewManager;
-
+public class InsuranceClaimUpdater extends ControllerOperator<InsuranceClaim> {
     public InsuranceClaimUpdater() {
+        super();
     }
 
     public InsuranceClaimUpdater(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
-        this.systemStorageManager = systemStorageManager;
-        this.systemViewManager = systemViewManager;
+        super(systemStorageManager, systemViewManager);
     }
 
-
     @Override
-    public InsuranceClaim update(Map<String, String> data) {
+    public InsuranceClaim execute(Map<String, String> data) {
         CustomerStorageManager customers = systemStorageManager.getCustomerStorageManager();
         InsuranceClaimStorage insuranceClaims = systemStorageManager.getClaimStorage();
 

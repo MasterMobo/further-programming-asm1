@@ -10,31 +10,20 @@ import java.util.Map;
 
 public class PolicyHolderController extends CustomerController{
     public PolicyHolderController() {
-        creator = new PolicyHolderCreator();
+        super();
     }
 
     public PolicyHolderController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         super(systemStorageManager, systemViewManager);
-        creator = new PolicyHolderCreator(systemStorageManager, systemViewManager);
     }
 
     @Override
     public Customer add() {
         PolicyHolderView policyHolderView = systemViewManager.getPolicyHolderView();
-
         Map<String, String> data = policyHolderView.displayAddForm();
+        PolicyHolderCreator creator = new PolicyHolderCreator(systemStorageManager, systemViewManager);
 
-        Customer newCustomer = creator.create(data);
-
-        // Customer can be null if creation failed
-        if (newCustomer == null) return null;
-
-        // Display newly added customer
-        policyHolderView.displaySuccessAddMsg();
-        policyHolderView.displayItem(newCustomer);
-
-        return newCustomer;
+        return executeOperator(creator, data, policyHolderView);
     }
-
 
 }

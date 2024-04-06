@@ -67,7 +67,7 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
 
-        System.out.print("Enter Insurance Claim Id to Update: ");
+        System.out.print("Enter Insurance Claim ID to Update: ");
         data.put(CLAIM_ID, reader.read());
 
         data.putAll(displayBasicForm());
@@ -111,6 +111,27 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     }
 
     @Override
+    public Map<String, String> displayDeleteForm() {
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+        System.out.println("---Deleting Insurance Claim---");
+        System.out.print("Enter Insurance Claim ID to Delete: ");
+
+        data.put(InsuranceClaimView.CLAIM_ID, reader.read());
+
+        return data;
+    }
+
+    @Override
+    public boolean displayDeleteConfirm() {
+        DataReader reader = ConsoleReader.getInstance();
+        System.out.println("Are you sure you want to delete this Insurance Claim? (y/n)");
+        System.out.println("(This action is irreversible)");
+
+        return reader.read().equalsIgnoreCase("y");
+    }
+
+    @Override
     public void displaySuccessAddMsg() {
         System.out.println("Successfully added new Insurance Claim!");
     }
@@ -122,5 +143,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     @Override
     public String getId() {
         return ViewCode.INSURANCE_CLAIMS;
+    }
+
+    @Override
+    public void displayDeleteSuccessMsg() {
+        System.out.println("Successfully deleted Insurance Claim!");
     }
 }
