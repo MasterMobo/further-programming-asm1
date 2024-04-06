@@ -26,12 +26,7 @@ public class OptionTree implements OptionManager{
 
         if (current.isLeaf()) {
             current.execute();
-            callStack.pop();
-
-            if (callStack.isEmpty()){
-                reset();
-            }
-
+            returnToPrevious();
             execute();
             return;
         }
@@ -59,10 +54,7 @@ public class OptionTree implements OptionManager{
             execute();
 
         } catch (IllegalArgumentException e) {
-            if (!handleStringChoice(input)) {
-                System.out.println("Invalid Choice. Please try Again");
-                execute();
-            }
+            handleStringInput(input);
         }
 
     }
@@ -81,23 +73,21 @@ public class OptionTree implements OptionManager{
         System.out.println("Enter your choice:");
     }
 
-    private boolean handleStringChoice(String s) {
+    private void handleStringInput(String s) {
         switch (s) {
             case "b" -> {
-                callStack.pop();
-                if (callStack.isEmpty()) {
-                    reset();
-                    return true;
-                }
+                returnToPrevious();
                 execute();
-                return true;
             }
             case "r" -> {
                 reset();
-                return true;
+            }
+            case "q" -> {
+
             }
             default -> {
-                return false;
+                System.out.println("Invalid Choice. Please try Again");
+                execute();
             }
         }
     }
@@ -106,6 +96,7 @@ public class OptionTree implements OptionManager{
         callStack.removeAllElements();
         callStack.add(root);
         execute();
+        // TODO: do i need execute here?
     }
 
     private boolean indexInvalid(int index) {
@@ -113,4 +104,10 @@ public class OptionTree implements OptionManager{
         return (index < 0 || index >= current.getChildren().size());
     }
 
+    private void returnToPrevious() {
+        callStack.pop();
+        if (callStack.isEmpty()) {
+            reset();
+        }
+    }
 }
