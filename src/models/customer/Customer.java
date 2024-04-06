@@ -11,13 +11,13 @@ public abstract class Customer implements StorageItem {
     public Customer() {
         this.id = "Default";
         this.fullName = "Default";
-        this.insuranceCardNumber = "Default";
+        this.insuranceCardNumber = "none";
     }
 
     public Customer(String id, String fullName) {
         this.id = id;
         this.fullName = fullName;
-        this.insuranceCardNumber = "Default";
+        this.insuranceCardNumber = "none";
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class Customer implements StorageItem {
     }
 
     public boolean hasInsuranceCard() {
-        return insuranceCardNumber != null && !(insuranceCardNumber.equals("Default"));
+        return insuranceCardNumber != null && !(insuranceCardNumber.equals("none"));
     }
 
     public void setInsuranceCardNumber(String insuranceCardNumber) {
