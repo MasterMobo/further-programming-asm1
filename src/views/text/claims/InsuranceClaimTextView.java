@@ -164,12 +164,15 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
 
     @Override
     public void displayManyClaims(List<List<InsuranceClaim>> res) {
+        if (res.get(0).size() == 0 && res.get(1).size() == 0) {
+            System.out.println(ConsoleColors.BLUE + "Nothing to show" + ConsoleColors.RESET);
+            return;
+        }
+
         for (InsuranceClaim mainClaim: res.get(0)) {
             displayItem(mainClaim);
         }
 
-        // Check if there is any dependent claim
-        if (res.get(1).size() == 0) return;
 
         System.out.println("---Dependent Claims---");
         for (InsuranceClaim dependentClaim: res.get(1)) {

@@ -1,5 +1,6 @@
 package views.ui.options;
 
+import utils.console.ConsoleColors;
 import utils.console.ConsoleUtils;
 import utils.converters.IntegerConverter;
 import utils.converters.TypeConverter;
@@ -21,16 +22,22 @@ public class OptionTree implements OptionManager{
 
     @Override
     public void execute() {
+        DataReader reader = ConsoleReader.getInstance();
+
         Option current = callStack.peek();
 
         if (current.isLeaf()) {
             current.execute();
+
+            System.out.println(ConsoleColors.BLUE + "Press ENTER to continue" + ConsoleColors.RESET);
+            reader.read(); // Give buffer time for user to read before returning
+
+            ConsoleUtils.clearScreen();
             returnToPrevious();
             execute();
             return;
         }
 
-        DataReader reader = ConsoleReader.getInstance();
         TypeConverter<Integer> intConverter = new IntegerConverter();
 
         displayOption(current);
