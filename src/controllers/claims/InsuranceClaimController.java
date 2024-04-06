@@ -4,14 +4,12 @@ import controllers.*;
 import models.claims.InsuranceClaim;
 import models.system.SystemStorageManager;
 import views.general.InsuranceClaimView;
-import views.general.MessageView;
-import views.general.operations.ItemDisplayView;
 import views.system.SystemViewManager;
 
+import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimController extends Controller<InsuranceClaim> implements AddableController<InsuranceClaim>, UpdatableController<InsuranceClaim>, DeletableController<InsuranceClaim> {
-
+public class InsuranceClaimController extends Controller<InsuranceClaim> implements GettableController<InsuranceClaim>, AddableController<InsuranceClaim>, UpdatableController<InsuranceClaim>, DeletableController<InsuranceClaim> {
 
     public InsuranceClaimController() {
         super();
@@ -21,7 +19,6 @@ public class InsuranceClaimController extends Controller<InsuranceClaim> impleme
         this.systemStorageManager = systemStorageManager;
         this.systemViewManager = systemViewManager;
     }
-
 
     @Override
     public InsuranceClaim add() {
@@ -48,5 +45,27 @@ public class InsuranceClaimController extends Controller<InsuranceClaim> impleme
         Map<String, String> data = claimView.displayDeleteForm();
 
         return executeOperator(deleter, data, claimView);
+    }
+
+    @Override
+    public InsuranceClaim get() {
+        InsuranceClaimSingleGetter singleGetter = new InsuranceClaimSingleGetter(systemStorageManager, systemViewManager);
+        InsuranceClaimView claimView = systemViewManager.getInsuranceClaimView();
+        Map<String, String> data = claimView.displayGetForm();
+
+        return executeOperator(singleGetter, data, claimView);
+    }
+
+    @Override
+    public List<InsuranceClaim> getMany() {
+        InsuranceClaimManyGetter manyGetter = new InsuranceClaimManyGetter(systemStorageManager, systemViewManager);
+        InsuranceClaimView claimView = systemViewManager.getInsuranceClaimView();
+        Map<String, String> data = claimView.displayGetManyForm();
+
+        List<List<InsuranceClaim>> res = manyGetter.execute(data);
+
+        if (res == null) return null;
+
+        return res.get(0);  // Returning only the main claims. Might change later lol.
     }
 }

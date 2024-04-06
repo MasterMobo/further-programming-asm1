@@ -43,11 +43,6 @@ public class InsuranceCardTextView implements InsuranceCardView {
     }
 
     @Override
-    public void displaySuccessAddMsg() {
-        System.out.println("Successfully added new Insurance Card!");
-    }
-
-    @Override
     public String getId() {
         return ViewCode.INSURANCE_CARDS;
     }

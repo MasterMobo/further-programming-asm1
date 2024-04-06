@@ -34,11 +34,6 @@ public class DependentTextView extends CustomerTextView implements DependentView
     }
 
     @Override
-    public void displaySuccessAddMsg() {
-        System.out.println("Successfully added new Dependent!");
-    }
-
-    @Override
     public String getId() {
         return ViewCode.DEPENDENTS;
     }

@@ -31,11 +31,6 @@ public class PolicyHolderTextView extends CustomerTextView implements PolicyHold
     }
 
     @Override
-    public void displaySuccessAddMsg() {
-        System.out.println("Successfully added new Policy Holder!");
-    }
-
-    @Override
     public String getId() {
         return ViewCode.POLICY_HOLDERS;
     }

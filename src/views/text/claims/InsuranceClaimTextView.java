@@ -9,6 +9,7 @@ import views.io.DataReader;
 import views.system.ViewCode;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InsuranceClaimTextView implements InsuranceClaimView {
@@ -132,21 +133,44 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     }
 
     @Override
-    public void displaySuccessAddMsg() {
-        System.out.println("Successfully added new Insurance Claim!");
+    public Map<String, String> displayGetForm() {
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+
+        System.out.print("Enter Insurance Claim ID: ");
+        data.put(InsuranceClaimView.CLAIM_ID, reader.read());
+
+        return data;
     }
 
     @Override
-    public void displaySuccessUpdateMsg() {
-        System.out.println("Successfully updated Insurance Claim!");
+    public Map<String, String> displayGetManyForm() {
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+
+        System.out.print("Enter Customer ID: ");
+        data.put(InsuranceClaimView.INSURED_PERSON, reader.read());
+
+        return data;
     }
+
     @Override
     public String getId() {
         return ViewCode.INSURANCE_CLAIMS;
     }
 
     @Override
-    public void displayDeleteSuccessMsg() {
-        System.out.println("Successfully deleted Insurance Claim!");
+    public void displayManyClaims(List<List<InsuranceClaim>> res) {
+        for (InsuranceClaim mainClaim: res.get(0)) {
+            displayItem(mainClaim);
+        }
+
+        // Check if there is any dependent claim
+        if (res.get(1).size() == 0) return;
+
+        System.out.println("---Dependent Claims---");
+        for (InsuranceClaim dependentClaim: res.get(1)) {
+            displayItem(dependentClaim);
+        }
     }
 }
