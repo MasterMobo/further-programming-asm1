@@ -3,9 +3,8 @@ package controllers.cards;
 import controllers.Controller;
 import controllers.AddableController;
 import models.card.InsuranceCard;
-import models.system.SystemManager;
+import models.system.SystemStorageManager;
 import views.general.InsuranceCardView;
-import views.general.MessageView;
 import views.general.SystemView;
 
 import java.util.Map;
@@ -17,9 +16,9 @@ public class InsuranceCardController extends Controller<InsuranceCard> implement
         creator = new InsuranceCardCreator();
     }
 
-    public InsuranceCardController(SystemManager systemManager, SystemView systemView) {
-        super(systemManager, systemView);
-        creator = new InsuranceCardCreator(systemManager, systemView);
+    public InsuranceCardController(SystemStorageManager systemStorageManager, SystemView systemView) {
+        super(systemStorageManager, systemView);
+        creator = new InsuranceCardCreator(systemStorageManager, systemView);
     }
 
     @Override

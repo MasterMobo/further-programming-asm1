@@ -1,13 +1,15 @@
 package models.customer;
 
-import models.customer.dependent.DependentManager;
-import models.customer.holder.PolicyHolderManager;
-import models.id.IdGenerator;
-import models.id.PrefixIdGenerator;
+import models.customer.roles.dependent.DependentStorage;
+import models.customer.roles.holder.PolicyHolderStorage;
+import models.customer.roles.CustomerRoleStorage;
+import models.storage.MapStorage;
+import models.storage.PrefixIdGenerator;
+import models.storage.StorageCode;
 
 import java.util.*;
 
-public class CustomerManagementSystem implements CustomerManager{
+public class CustomerStorageMap extends MapStorage<CustomerRoleStorage> implements CustomerStorageManager {
     // This class manages customer of ALL roles within the system.
     // This class uses a map to keep track of different CustomerRoleManager. Each role manager has a unique role code defined in CustomerRoleCode.
     // To access a role, use getManager() with correct role code.
@@ -20,36 +22,10 @@ public class CustomerManagementSystem implements CustomerManager{
     // This is the purpose of the customerIds set.
 
     private final Set<String> customerIds;     // This set contains the IDs of all customers within the system. This is used to ensure ID uniqueness across different user roles.
-    private final Map<CustomerRoleCode, CustomerRoleManager> customerRoles;  // This maps a unique role code to a role manager. All customer roles in the system should be present here.
-    private final IdGenerator idGenerator;  // User ID format is shared between all CustomerManagers, therefore this IdGenerator is also shared.
 
-    public CustomerManagementSystem() {
+    public CustomerStorageMap() {
+        super(new PrefixIdGenerator("c", 7));
         customerIds = new HashSet<>();
-        customerRoles = new HashMap<>();
-        idGenerator = new PrefixIdGenerator("c", 7);
-    }
-
-    public CustomerManagementSystem(PolicyHolderManager policyHolders, DependentManager dependents) {
-        customerIds = new HashSet<>();
-        idGenerator = new PrefixIdGenerator("c", 7);
-
-        customerRoles = new HashMap<>();
-        // Default roles
-        customerRoles.put(CustomerRoleCode.POLICYHOLDER, policyHolders);
-        customerRoles.put(CustomerRoleCode.DEPENDENT, dependents);
-    }
-
-
-    @Override
-    public void addRoleManager(CustomerRoleCode roleCode, CustomerRoleManager roleManager) {
-        // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
-        customerRoles.put(roleCode, roleManager);
-    }
-
-    @Override
-    public CustomerRoleManager getManager(CustomerRoleCode roleCode) {
-        // Get the manager corresponding to the role code
-        return customerRoles.get(roleCode);
     }
 
     @Override
@@ -88,9 +64,9 @@ public class CustomerManagementSystem implements CustomerManager{
     }
 
     @Override
-    public Customer get(String customerId) {
+    public Customer getCustomer(String customerId) {
         // Since this class contains customers of all roles. We need to check if the id is contained in any role manager.
-        for (CustomerRoleManager manager: customerRoles.values()) {
+        for (CustomerRoleStorage manager: map.values()) {
             Customer customer = (Customer) manager.get(customerId);
             if (customer != null) return customer;
         }
@@ -98,18 +74,32 @@ public class CustomerManagementSystem implements CustomerManager{
     }
 
     @Override
-    public boolean exists(String customerId) {
-        return get(customerId) != null;
+    public boolean customerExists(String customerId) {
+        return getCustomer(customerId) != null;
     }
 
     @Override
     public boolean hasInsuranceCard(String customerId) {
-        return get(customerId).hasInsuranceCard();
+        return getCustomer(customerId).hasInsuranceCard();
     }
 
     @Override
     public String getCardNumber(String customerId) {
-        return get(customerId).getInsuranceCardNumber();
+        return getCustomer(customerId).getInsuranceCardNumber();
     }
 
+    @Override
+    public PolicyHolderStorage getPolicyHolderStorage() {
+        return (PolicyHolderStorage) get(StorageCode.POLICY_HOLDERS);
+    }
+
+    @Override
+    public DependentStorage getDependentStorage() {
+        return (DependentStorage) get(StorageCode.DEPENDENTS);
+    }
+
+    @Override
+    public String getId() {
+        return StorageCode.CUSTOMERS;
+    }
 }

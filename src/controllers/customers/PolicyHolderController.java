@@ -2,10 +2,8 @@ package controllers.customers;
 
 import controllers.customers.creators.PolicyHolderCreator;
 import models.customer.Customer;
-import models.system.SystemManager;
-import views.general.MessageView;
+import models.system.SystemStorageManager;
 import views.general.SystemView;
-import views.general.customers.CustomerView;
 import views.general.customers.PolicyHolderView;
 
 import java.util.Map;
@@ -15,9 +13,9 @@ public class PolicyHolderController extends CustomerController{
         creator = new PolicyHolderCreator();
     }
 
-    public PolicyHolderController(SystemManager systemManager, SystemView systemView) {
-        super(systemManager, systemView);
-        creator = new PolicyHolderCreator(systemManager, systemView);
+    public PolicyHolderController(SystemStorageManager systemStorageManager, SystemView systemView) {
+        super(systemStorageManager, systemView);
+        creator = new PolicyHolderCreator(systemStorageManager, systemView);
     }
 
     @Override

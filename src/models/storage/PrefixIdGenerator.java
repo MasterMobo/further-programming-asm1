@@ -1,4 +1,4 @@
-package models.id;
+package models.storage;
 
 public class PrefixIdGenerator implements IdGenerator{
     private String prefix;  // Prefix of the models.id

@@ -2,8 +2,7 @@ package controllers.customers;
 
 import controllers.customers.creators.DependentCreator;
 import models.customer.Customer;
-import models.system.SystemManager;
-import views.general.MessageView;
+import models.system.SystemStorageManager;
 import views.general.SystemView;
 import views.general.customers.DependentView;
 
@@ -15,9 +14,9 @@ public class DependentController extends CustomerController{
         creator = new DependentCreator();
     }
 
-    public DependentController(SystemManager systemManager, SystemView systemView) {
-        super(systemManager, systemView);
-        creator = new DependentCreator(systemManager, systemView);
+    public DependentController(SystemStorageManager systemStorageManager, SystemView systemView) {
+        super(systemStorageManager, systemView);
+        creator = new DependentCreator(systemStorageManager, systemView);
     }
 
     @Override

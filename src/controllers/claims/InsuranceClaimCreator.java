@@ -1,10 +1,10 @@
 package controllers.claims;
 
-import models.claims.InsuranceClaimManager;
+import models.claims.InsuranceClaimStorage;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;
-import models.customer.CustomerManager;
-import models.system.SystemManager;
+import models.customer.CustomerStorageManager;
+import models.system.SystemStorageManager;
 import utils.converters.DateConverter;
 import utils.converters.DoubleConverter;
 import utils.converters.TypeConverter;
@@ -18,21 +18,21 @@ import java.util.List;
 import java.util.Map;
 
 public class InsuranceClaimCreator {
-    private SystemManager systemManager;
+    private SystemStorageManager systemStorageManager;
     private SystemView systemView;
 
     public InsuranceClaimCreator() {
     }
 
-    public InsuranceClaimCreator(SystemManager systemManager, SystemView systemView) {
-        this.systemManager = systemManager;
+    public InsuranceClaimCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+        this.systemStorageManager = systemStorageManager;
         this.systemView = systemView;
     }
 
     public InsuranceClaim create(Map<String, String> data) {
         // Get the managers
-        CustomerManager customerManager = systemManager.getCustomerManager();
-        InsuranceClaimManager claimManager = systemManager.getClaimManager();
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
+        InsuranceClaimStorage claimManager = systemStorageManager.getClaimManager();
 
         // Get the views
         InsuranceClaimView claimView = systemView.getInsuranceClaimView();
@@ -45,18 +45,18 @@ public class InsuranceClaimCreator {
         // Get Customer ID
         String insuredPersonId = data.get(InsuranceClaimView.INSURED_PERSON);
 
-        if (!customerManager.exists(insuredPersonId)) {
+        if (!customerStorageManager.customerExists(insuredPersonId)) {
             messageView.displayError("Customer does not exist");
             return null;
         }
 
-        if (!customerManager.hasInsuranceCard(insuredPersonId)) {
+        if (!customerStorageManager.hasInsuranceCard(insuredPersonId)) {
             messageView.displayError("This customer does not have an insurance card");
             return null;
         }
 
         // Get remaining claim info
-        String cardNum = customerManager.getCardNumber(insuredPersonId);
+        String cardNum = customerStorageManager.getCardNumber(insuredPersonId);
         List<String> documentNames = parseDocuments(data.get(InsuranceClaimView.DOCUMENTS));
         String bankInfo = data.get(InsuranceClaimView.RECEIVER_BANK);
         double claimAmount = doubleConverter.fromString(data.get(InsuranceClaimView.CLAIM_AMOUNT));

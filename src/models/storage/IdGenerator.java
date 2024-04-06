@@ -1,4 +1,4 @@
-package models.id;
+package models.storage;
 
 public interface IdGenerator {
     String randomId();

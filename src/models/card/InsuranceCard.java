@@ -1,10 +1,10 @@
 package models.card;
 
-import models.id.Identifiable;
+import models.storage.StorageItem;
 
 import java.util.Date;
 
-public class InsuranceCard implements Identifiable {
+public class InsuranceCard implements StorageItem {
     private String cardNumber;
     private String cardHolderId;    // Cardholder is a Customer
     private String policyOwner;     // Organization that purchases the insurance to the models.customer

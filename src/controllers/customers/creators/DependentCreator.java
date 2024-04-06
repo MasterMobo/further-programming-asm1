@@ -1,13 +1,12 @@
 package controllers.customers.creators;
 
 import models.customer.Customer;
-import models.customer.CustomerManager;
-import models.customer.CustomerRoleCode;
-import models.customer.dependent.Dependent;
-import models.customer.dependent.DependentManager;
-import models.customer.holder.PolicyHolder;
-import models.customer.holder.PolicyHolderManager;
-import models.system.SystemManager;
+import models.customer.CustomerStorageManager;
+import models.customer.roles.dependent.Dependent;
+import models.customer.roles.dependent.DependentStorage;
+import models.customer.roles.holder.PolicyHolder;
+import models.customer.roles.holder.PolicyHolderStorage;
+import models.system.SystemStorageManager;
 import views.general.MessageView;
 import views.general.SystemView;
 import views.general.customers.CustomerView;
@@ -21,18 +20,18 @@ public class DependentCreator extends CustomerCreator{
         super();
     }
 
-    public DependentCreator(SystemManager systemManager, SystemView systemView) {
-        super(systemManager, systemView);
+    public DependentCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+        super(systemStorageManager, systemView);
     }
 
     @Override
     public Customer create(Map<String, String> data) {
         MessageView messageView = systemView.getMessageView();
 
-        // Get the managers
-        CustomerManager customerManager = systemManager.getCustomerManager();
-        PolicyHolderManager policyHolders = (PolicyHolderManager) customerManager.getManager(CustomerRoleCode.POLICYHOLDER);
-        DependentManager dependents = (DependentManager) customerManager.getManager(CustomerRoleCode.DEPENDENT);
+        // Get the storages
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
+        PolicyHolderStorage policyHolders = customerStorageManager.getPolicyHolderStorage();
+        DependentStorage dependents = customerStorageManager.getDependentStorage();
 
         String dependsOn = data.get(DependentView.DEPENDS_ON);
 
@@ -42,7 +41,7 @@ public class DependentCreator extends CustomerCreator{
             return null;
         }
 
-        String id = customerManager.generateAndAddId();
+        String id = customerStorageManager.generateAndAddId();
         String fullName = data.get(CustomerView.CUSTOMER_NAME);
 
         // Add dependent to policy holder

@@ -1,11 +1,8 @@
 package models.customer;
 
-import models.id.Identifiable;
+import models.storage.StorageItem;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public abstract class Customer implements Identifiable {
+public abstract class Customer implements StorageItem {
 
     protected String id;
     protected String fullName;

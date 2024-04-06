@@ -1,11 +1,11 @@
 package controllers;
 
-import models.system.SystemManager;
+import models.system.SystemStorageManager;
 import views.general.SystemView;
 
 public abstract class Controller<T>{
     // Model
-    protected SystemManager systemManager;
+    protected SystemStorageManager systemStorageManager;
 
     // View
     protected SystemView systemView;
@@ -13,8 +13,8 @@ public abstract class Controller<T>{
     public Controller() {
     }
 
-    public Controller(SystemManager systemManager, SystemView systemView) {
-        this.systemManager = systemManager;
+    public Controller(SystemStorageManager systemStorageManager, SystemView systemView) {
+        this.systemStorageManager = systemStorageManager;
         this.systemView = systemView;
     }
 }

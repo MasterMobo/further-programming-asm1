@@ -4,7 +4,7 @@ import controllers.Controller;
 import controllers.AddableController;
 import controllers.customers.creators.CustomerCreator;
 import models.customer.Customer;
-import models.system.SystemManager;
+import models.system.SystemStorageManager;
 import views.general.SystemView;
 
 public abstract class CustomerController extends Controller<Customer> implements AddableController<Customer> {
@@ -13,8 +13,8 @@ public abstract class CustomerController extends Controller<Customer> implements
         super();
     }
 
-    public CustomerController(SystemManager systemManager, SystemView systemView) {
-        this.systemManager = systemManager;
+    public CustomerController(SystemStorageManager systemStorageManager, SystemView systemView) {
+        this.systemStorageManager = systemStorageManager;
         this.systemView = systemView;
     }
 

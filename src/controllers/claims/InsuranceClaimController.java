@@ -3,9 +3,8 @@ package controllers.claims;
 import controllers.AddableController;
 import controllers.Controller;
 import models.claims.InsuranceClaim;
-import models.system.SystemManager;
+import models.system.SystemStorageManager;
 import views.general.InsuranceClaimView;
-import views.general.MessageView;
 import views.general.SystemView;
 
 import java.util.Map;
@@ -17,10 +16,10 @@ public class InsuranceClaimController extends Controller<InsuranceClaim> impleme
         creator = new InsuranceClaimCreator();
     }
 
-    public InsuranceClaimController(SystemManager systemManager, SystemView systemView) {
-        this.systemManager = systemManager;
+    public InsuranceClaimController(SystemStorageManager systemStorageManager, SystemView systemView) {
+        this.systemStorageManager = systemStorageManager;
         this.systemView = systemView;
-        creator = new InsuranceClaimCreator(systemManager, systemView);
+        creator = new InsuranceClaimCreator(systemStorageManager, systemView);
     }
 
     // TODO: All theses add() methods are the same, should just abstract

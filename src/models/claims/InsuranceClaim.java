@@ -1,12 +1,12 @@
 package models.claims;
 
-import models.id.Identifiable;
+import models.storage.StorageItem;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class InsuranceClaim implements Identifiable {
+public class InsuranceClaim implements StorageItem {
     private String id;
     private Date claimDate;
     private String insuredPersonId;

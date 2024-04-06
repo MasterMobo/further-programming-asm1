@@ -1,41 +1,42 @@
 import controllers.cards.InsuranceCardController;
 import controllers.claims.InsuranceClaimController;
-import controllers.claims.InsuranceClaimCreator;
 import controllers.customers.CustomerController;
 import controllers.customers.DependentController;
 import controllers.customers.PolicyHolderController;
-import models.card.InsuranceCardMap;
-import models.claims.InsuranceClaimMap;
-import models.claims.InsuranceClaimStatus;
-import models.customer.CustomerManager;
-import models.customer.CustomerManagementSystem;
-import models.customer.dependent.DependentMap;
-import models.customer.holder.PolicyHolderMap;
-import models.system.ManagerSet;
-import models.system.SystemManager;
+import models.card.InsuranceCardMapStorage;
+import models.claims.InsuranceClaimMapStorage;
+import models.customer.CustomerStorageManager;
+import models.customer.CustomerStorageMap;
+import models.customer.roles.dependent.DependentMapStorage;
+import models.customer.roles.holder.PolicyHolderMapStorage;
+import models.system.SystemStorageMap;
+import models.system.SystemStorageManager;
 import views.factories.TextViewFactory;
 import views.factories.ViewFactory;
 import views.general.SystemView;
 import views.text.SystemTextView;
-import views.text.cards.InsuranceCardTextView;
-import views.text.claims.InsuranceClaimTextView;
 import views.io.ConsoleReader;
 import views.io.DataReader;
 
-import java.util.Date;
 // TODO: Global (or at least entry level) try-catch so that program doesn't end when error
 public class Main {
     public static void main(String[] args) {
-        CustomerManager customerManager = new CustomerManagementSystem(new PolicyHolderMap(), new DependentMap());
-        SystemManager systemManager = new ManagerSet(customerManager, new InsuranceClaimMap(), new InsuranceCardMap());
+        CustomerStorageManager customerStorageManager = new CustomerStorageMap();
+        customerStorageManager.add(new PolicyHolderMapStorage());
+        customerStorageManager.add(new DependentMapStorage());
+
+        SystemStorageManager systemStorageManager = new SystemStorageMap();
+        systemStorageManager.add(customerStorageManager);
+        systemStorageManager.add(new InsuranceCardMapStorage());
+        systemStorageManager.add(new InsuranceClaimMapStorage());
 
         ViewFactory viewFactory = new TextViewFactory();
         SystemView systemView = new SystemTextView(viewFactory.createMessageView(), viewFactory.createPolicyHolderView(), viewFactory.createDependentView(), viewFactory.createInsuranceCardView(), viewFactory.createInsuranceClaimView());
 
-        CustomerController policyHolderController = new PolicyHolderController(systemManager, systemView);
-        CustomerController dependentController = new DependentController(systemManager, systemView);
-        InsuranceCardController cardController = new InsuranceCardController(systemManager, systemView);
-        InsuranceClaimController claimController = new InsuranceClaimController(systemManager, systemView);
+        CustomerController policyHolderController = new PolicyHolderController(systemStorageManager, systemView);
+        CustomerController dependentController = new DependentController(systemStorageManager, systemView);
+        InsuranceCardController cardController = new InsuranceCardController(systemStorageManager, systemView);
+        InsuranceClaimController claimController = new InsuranceClaimController(systemStorageManager, systemView);
 
         DataReader reader = ConsoleReader.getInstance();
         String input = "";

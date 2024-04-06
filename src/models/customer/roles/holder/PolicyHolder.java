@@ -1,4 +1,4 @@
-package models.customer.holder;
+package models.customer.roles.holder;
 
 import models.customer.Customer;
 

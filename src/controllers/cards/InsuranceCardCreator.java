@@ -1,10 +1,10 @@
 package controllers.cards;
 
 import models.card.InsuranceCard;
-import models.card.InsuranceCardManager;
+import models.card.InsuranceCardStorage;
 import models.customer.Customer;
-import models.customer.CustomerManager;
-import models.system.SystemManager;
+import models.customer.CustomerStorageManager;
+import models.system.SystemStorageManager;
 import views.general.InsuranceCardView;
 import utils.converters.DateConverter;
 import utils.converters.TypeConverter;
@@ -15,30 +15,30 @@ import java.util.Date;
 import java.util.Map;
 
 public class InsuranceCardCreator {
-    private SystemManager systemManager;
+    private SystemStorageManager systemStorageManager;
     private SystemView systemView;
 
     public InsuranceCardCreator() {
     }
 
-    public InsuranceCardCreator(SystemManager systemManager, SystemView systemView) {
-        this.systemManager = systemManager;
+    public InsuranceCardCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+        this.systemStorageManager = systemStorageManager;
         this.systemView = systemView;
     }
 
     public InsuranceCard create(Map<String, String> data) {
         MessageView messageView = systemView.getMessageView();
-        CustomerManager customerManager = systemManager.getCustomerManager();
-        InsuranceCardManager cardManager = systemManager.getCardManager();
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
+        InsuranceCardStorage cardManager = systemStorageManager.getCardManager();
 
         String cardHolderId = data.get(InsuranceCardView.CARD_HOLDER);
 
-        if (!customerManager.exists(cardHolderId)) {
+        if (!customerStorageManager.customerExists(cardHolderId)) {
             messageView.displayError("Card Holder does not exist");
             return null;
         }
 
-        if (customerManager.hasInsuranceCard(cardHolderId)) {
+        if (customerStorageManager.hasInsuranceCard(cardHolderId)) {
             messageView.displayError("Card Holder already has an Insurance Card");
             return null;
         }
@@ -50,7 +50,7 @@ public class InsuranceCardCreator {
             Date exipryDate = dateConverter.fromString(data.get(InsuranceCardView.EXPIRY_DATE));
             String cardNumber = cardManager.generateId();
 
-            Customer cardHolder = customerManager.get(cardHolderId);
+            Customer cardHolder = customerStorageManager.getCustomer(cardHolderId);
             cardHolder.setInsuranceCardNumber(cardNumber);
 
             InsuranceCard newCard = new InsuranceCard(cardNumber, cardHolderId, policyOwner, exipryDate);

@@ -1,4 +1,4 @@
-package models.customer.dependent;
+package models.customer.roles.dependent;
 
 import models.customer.Customer;
 

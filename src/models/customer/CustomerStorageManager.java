@@ -1,17 +1,18 @@
 package models.customer;
 
-import models.customer.dependent.DependentManager;
-import models.customer.holder.PolicyHolderManager;
+import models.customer.roles.CustomerRoleStorage;
+import models.customer.roles.dependent.DependentStorage;
+import models.customer.roles.holder.PolicyHolderStorage;
+import models.storage.Storage;
+import models.storage.StorageItem;
+import models.system.SystemStorable;
 
-public interface CustomerManager {
+public interface CustomerStorageManager extends Storage<CustomerRoleStorage>, SystemStorable {
     // This interfaces manages customers of ALL roles within the system
     // By default, the system will always have 2 roles (PolicyHolders and Dependents)
     // If you wish to add more roles, use addRoleManager()
     // Remember to add appropriate methods to access new roles
 
-    // Add a new CustomerRoleManager, allowing the system to deal with more customer roles.
-    void addRoleManager(CustomerRoleCode roleCode, CustomerRoleManager roleManager);
-    CustomerRoleManager getManager(CustomerRoleCode roleCode);
 
     // Generates a unique ID across all user roles.
     // This method will NOT add the returned ID to the ID set.
@@ -30,13 +31,16 @@ public interface CustomerManager {
     String generateAndAddId();
 
     // Get a customer with the provided ID from any role
-    Customer get(String customerId);
+    Customer getCustomer(String customerId);
 
     // Checks if a customer with the provided ID of any role exists
-    boolean exists(String customerId);
+    boolean customerExists(String customerId);
 
     // Check if the customer with the provided ID has an insurance card
     boolean hasInsuranceCard(String customerId);
 
     String getCardNumber(String customerId);
+
+    PolicyHolderStorage getPolicyHolderStorage();
+    DependentStorage getDependentStorage();
 }

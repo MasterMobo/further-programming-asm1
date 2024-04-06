@@ -1,8 +1,8 @@
-package models.id;
+package models.storage;
 
 import java.util.*;
 
-public abstract class IdMap <T extends Identifiable> implements IdManager<T>{
+public abstract class MapStorage<T extends StorageItem> implements Storage<T> {
     // This class maps a unique ID (String) to an item of type T.
     // Type T has to implements the Identifiable interface, which means it needs a unique ID
     // This class serve as a basis for other mapping classes, providing the basic members of an ID map
@@ -12,12 +12,12 @@ public abstract class IdMap <T extends Identifiable> implements IdManager<T>{
     protected Map<String, T> map;
 
 
-    public IdMap() {
+    public MapStorage() {
         idGenerator = null;
         map = new HashMap<>();
     }
 
-    public IdMap(IdGenerator idGenerator) {
+    public MapStorage(IdGenerator idGenerator) {
         this.idGenerator = idGenerator;
         map = new HashMap<>();
     }

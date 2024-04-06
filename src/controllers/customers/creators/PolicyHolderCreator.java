@@ -1,11 +1,10 @@
 package controllers.customers.creators;
 
 import models.customer.Customer;
-import models.customer.CustomerManager;
-import models.customer.CustomerRoleCode;
-import models.customer.holder.PolicyHolder;
-import models.customer.holder.PolicyHolderManager;
-import models.system.SystemManager;
+import models.customer.CustomerStorageManager;
+import models.customer.roles.holder.PolicyHolder;
+import models.customer.roles.holder.PolicyHolderStorage;
+import models.system.SystemStorageManager;
 import views.general.SystemView;
 import views.general.customers.CustomerView;
 
@@ -17,19 +16,19 @@ public class PolicyHolderCreator extends CustomerCreator{
         super();
     }
 
-    public PolicyHolderCreator(SystemManager systemManager, SystemView systemView) {
-        super(systemManager, systemView);
+    public PolicyHolderCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+        super(systemStorageManager, systemView);
     }
 
     @Override
     public Customer create(Map<String, String> data) {
-        CustomerManager customerManager = systemManager.getCustomerManager();
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
 
-        String id = customerManager.generateAndAddId();
+        String id = customerStorageManager.generateAndAddId();
         String fullName = data.get(CustomerView.CUSTOMER_NAME);
 
         PolicyHolder newHolder = new PolicyHolder(id, fullName);
-        PolicyHolderManager policyHolders = (PolicyHolderManager) customerManager.getManager(CustomerRoleCode.POLICYHOLDER);
+        PolicyHolderStorage policyHolders = customerStorageManager.getPolicyHolderStorage();
 
         return policyHolders.add(newHolder);
     }

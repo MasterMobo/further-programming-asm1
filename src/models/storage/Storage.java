@@ -1,8 +1,8 @@
-package models.id;
+package models.storage;
 
 import java.util.List;
 
-public interface IdManager<T> extends Iterable<T>{
+public interface Storage<T> extends Iterable<T>{
     String generateId();
     T get(String id);
     List<T> getAll();
