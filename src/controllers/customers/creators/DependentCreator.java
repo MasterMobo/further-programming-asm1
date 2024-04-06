@@ -8,7 +8,7 @@ import models.customer.roles.holder.PolicyHolder;
 import models.customer.roles.holder.PolicyHolderStorage;
 import models.system.SystemStorageManager;
 import views.general.MessageView;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 import views.general.customers.CustomerView;
 import views.general.customers.DependentView;
 
@@ -20,16 +20,16 @@ public class DependentCreator extends CustomerCreator{
         super();
     }
 
-    public DependentCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
-        super(systemStorageManager, systemView);
+    public DependentCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
+        super(systemStorageManager, systemViewManager);
     }
 
     @Override
     public Customer create(Map<String, String> data) {
-        MessageView messageView = systemView.getMessageView();
+        MessageView messageView = systemViewManager.getMessageView();
 
         // Get the storages
-        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
         PolicyHolderStorage policyHolders = customerStorageManager.getPolicyHolderStorage();
         DependentStorage dependents = customerStorageManager.getDependentStorage();
 

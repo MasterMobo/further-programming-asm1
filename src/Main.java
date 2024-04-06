@@ -13,10 +13,10 @@ import models.system.SystemStorageMap;
 import models.system.SystemStorageManager;
 import views.factories.TextViewFactory;
 import views.factories.ViewFactory;
-import views.general.SystemView;
-import views.text.SystemTextView;
+import views.system.SystemViewManager;
 import views.io.ConsoleReader;
 import views.io.DataReader;
+import views.system.SystemViewMap;
 
 // TODO: Global (or at least entry level) try-catch so that program doesn't end when error
 public class Main {
@@ -31,12 +31,17 @@ public class Main {
         systemStorageManager.add(new InsuranceClaimMapStorage());
 
         ViewFactory viewFactory = new TextViewFactory();
-        SystemView systemView = new SystemTextView(viewFactory.createMessageView(), viewFactory.createPolicyHolderView(), viewFactory.createDependentView(), viewFactory.createInsuranceCardView(), viewFactory.createInsuranceClaimView());
+        SystemViewManager systemViewManager = new SystemViewMap();
+        systemViewManager.add(viewFactory.createMessageView());
+        systemViewManager.add(viewFactory.createPolicyHolderView());
+        systemViewManager.add(viewFactory.createDependentView());
+        systemViewManager.add(viewFactory.createInsuranceCardView());
+        systemViewManager.add(viewFactory.createInsuranceClaimView());
 
-        CustomerController policyHolderController = new PolicyHolderController(systemStorageManager, systemView);
-        CustomerController dependentController = new DependentController(systemStorageManager, systemView);
-        InsuranceCardController cardController = new InsuranceCardController(systemStorageManager, systemView);
-        InsuranceClaimController claimController = new InsuranceClaimController(systemStorageManager, systemView);
+        CustomerController policyHolderController = new PolicyHolderController(systemStorageManager, systemViewManager);
+        CustomerController dependentController = new DependentController(systemStorageManager, systemViewManager);
+        InsuranceCardController cardController = new InsuranceCardController(systemStorageManager, systemViewManager);
+        InsuranceClaimController claimController = new InsuranceClaimController(systemStorageManager, systemViewManager);
 
         DataReader reader = ConsoleReader.getInstance();
         String input = "";

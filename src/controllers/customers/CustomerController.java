@@ -5,7 +5,7 @@ import controllers.AddableController;
 import controllers.customers.creators.CustomerCreator;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 
 public abstract class CustomerController extends Controller<Customer> implements AddableController<Customer> {
     protected CustomerCreator creator;
@@ -13,9 +13,9 @@ public abstract class CustomerController extends Controller<Customer> implements
         super();
     }
 
-    public CustomerController(SystemStorageManager systemStorageManager, SystemView systemView) {
+    public CustomerController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         this.systemStorageManager = systemStorageManager;
-        this.systemView = systemView;
+        this.systemViewManager = systemViewManager;
     }
 
     @Override

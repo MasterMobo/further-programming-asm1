@@ -3,7 +3,7 @@ package controllers.customers;
 import controllers.customers.creators.PolicyHolderCreator;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 import views.general.customers.PolicyHolderView;
 
 import java.util.Map;
@@ -13,14 +13,14 @@ public class PolicyHolderController extends CustomerController{
         creator = new PolicyHolderCreator();
     }
 
-    public PolicyHolderController(SystemStorageManager systemStorageManager, SystemView systemView) {
-        super(systemStorageManager, systemView);
-        creator = new PolicyHolderCreator(systemStorageManager, systemView);
+    public PolicyHolderController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
+        super(systemStorageManager, systemViewManager);
+        creator = new PolicyHolderCreator(systemStorageManager, systemViewManager);
     }
 
     @Override
     public Customer add() {
-        PolicyHolderView policyHolderView = systemView.getPolicyHolderView();
+        PolicyHolderView policyHolderView = systemViewManager.getPolicyHolderView();
 
         Map<String, String> data = policyHolderView.displayAddForm();
 

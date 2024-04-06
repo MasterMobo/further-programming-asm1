@@ -2,7 +2,7 @@ package controllers.customers.creators;
 
 import models.customer.Customer;
 import models.system.SystemStorageManager;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 
 import java.util.Map;
 
@@ -11,14 +11,14 @@ public abstract class CustomerCreator {
     // Extend this class to customize how different roles are created.
 
     protected SystemStorageManager systemStorageManager;
-    protected SystemView systemView;
+    protected SystemViewManager systemViewManager;
 
     public CustomerCreator() {
     }
 
-    public CustomerCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+    public CustomerCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         this.systemStorageManager = systemStorageManager;
-        this.systemView = systemView;
+        this.systemViewManager = systemViewManager;
     }
 
     // Creates a new Customer.

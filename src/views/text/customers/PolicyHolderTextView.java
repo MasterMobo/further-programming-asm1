@@ -4,6 +4,7 @@ import models.customer.Customer;
 import views.general.customers.PolicyHolderView;
 import views.io.ConsoleReader;
 import views.io.DataReader;
+import views.system.ViewCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,5 +33,10 @@ public class PolicyHolderTextView extends CustomerTextView implements PolicyHold
     @Override
     public void displaySuccessAddMsg() {
         System.out.println("Successfully added new Policy Holder!");
+    }
+
+    @Override
+    public String getId() {
+        return ViewCode.POLICY_HOLDERS;
     }
 }

@@ -1,8 +1,9 @@
 package views.general;
 
 import models.claims.InsuranceClaim;
+import views.system.StorableView;
 
-public interface InsuranceClaimView extends AddView, ItemDisplayView<InsuranceClaim> {
+public interface InsuranceClaimView extends AddView, ItemDisplayView<InsuranceClaim>, StorableView {
     String CLAIM_DATE = "CLAIM_DATE";
     String INSURED_PERSON = "INSURED_PERSON";
     String CARD_NUM = "CARD_NUM";

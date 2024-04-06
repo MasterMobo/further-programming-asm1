@@ -4,6 +4,7 @@ import models.customer.Customer;
 import views.general.customers.DependentView;
 import views.io.ConsoleReader;
 import views.io.DataReader;
+import views.system.ViewCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,4 +38,8 @@ public class DependentTextView extends CustomerTextView implements DependentView
         System.out.println("Successfully added new Dependent!");
     }
 
+    @Override
+    public String getId() {
+        return ViewCode.DEPENDENTS;
+    }
 }

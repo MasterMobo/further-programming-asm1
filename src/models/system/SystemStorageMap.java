@@ -13,17 +13,17 @@ public class SystemStorageMap extends MapStorage<SystemStorable> implements Syst
 
 
     @Override
-    public CustomerStorageManager getCustomerManager() {
+    public CustomerStorageManager getCustomerStorageManager() {
         return (CustomerStorageManager) get(StorageCode.CUSTOMERS);
     }
 
     @Override
-    public InsuranceClaimStorage getClaimManager() {
+    public InsuranceClaimStorage getClaimStorage() {
         return (InsuranceClaimStorage) get(StorageCode.INSURANCE_CLAIMS);
     }
 
     @Override
-    public InsuranceCardStorage getCardManager() {
+    public InsuranceCardStorage getCardStorage() {
         return (InsuranceCardStorage) get(StorageCode.INSURANCE_CARDS);
     }
 }

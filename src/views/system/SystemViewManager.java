@@ -1,10 +1,13 @@
-package views.general;
+package views.system;
 
-import views.general.customers.CustomerView;
+import models.storage.Storage;
+import views.general.InsuranceCardView;
+import views.general.InsuranceClaimView;
+import views.general.MessageView;
 import views.general.customers.DependentView;
 import views.general.customers.PolicyHolderView;
 
-public interface SystemView {
+public interface SystemViewManager extends Storage<StorableView> {
     MessageView getMessageView();
     PolicyHolderView getPolicyHolderView();
     DependentView getDependentView();

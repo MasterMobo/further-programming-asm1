@@ -10,7 +10,7 @@ import utils.converters.DoubleConverter;
 import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
 import views.general.MessageView;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,24 +19,24 @@ import java.util.Map;
 
 public class InsuranceClaimCreator {
     private SystemStorageManager systemStorageManager;
-    private SystemView systemView;
+    private SystemViewManager systemViewManager;
 
     public InsuranceClaimCreator() {
     }
 
-    public InsuranceClaimCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+    public InsuranceClaimCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         this.systemStorageManager = systemStorageManager;
-        this.systemView = systemView;
+        this.systemViewManager = systemViewManager;
     }
 
     public InsuranceClaim create(Map<String, String> data) {
-        // Get the managers
-        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
-        InsuranceClaimStorage claimManager = systemStorageManager.getClaimManager();
+        // Get the storages
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
+        InsuranceClaimStorage claimStorage = systemStorageManager.getClaimStorage();
 
         // Get the views
-        InsuranceClaimView claimView = systemView.getInsuranceClaimView();
-        MessageView messageView = systemView.getMessageView();
+        InsuranceClaimView claimView = systemViewManager.getInsuranceClaimView();
+        MessageView messageView = systemViewManager.getMessageView();
 
         // Get the converters
         TypeConverter<Date> dateConverter = new DateConverter();
@@ -67,12 +67,12 @@ public class InsuranceClaimCreator {
             Date claimDate = dateConverter.fromString(data.get(InsuranceClaimView.CLAIM_DATE));
             Date examDate = dateConverter.fromString(data.get(InsuranceClaimView.EXAM_DATE));
 
-            String claimId = claimManager.generateId();
+            String claimId = claimStorage.generateId();
             List<String> documents = formatDocumentNames(claimId, cardNum, documentNames);
 
             InsuranceClaim newClaim = new InsuranceClaim(claimId, claimDate, insuredPersonId, cardNum, examDate, documents, claimAmount, claimStatus, bankInfo);
 
-            return claimManager.add(newClaim);
+            return claimStorage.add(newClaim);
 
         } catch (IllegalArgumentException e) {
             if (e.getMessage().contains("enum")) {

@@ -9,27 +9,27 @@ import views.general.InsuranceCardView;
 import utils.converters.DateConverter;
 import utils.converters.TypeConverter;
 import views.general.MessageView;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 
 import java.util.Date;
 import java.util.Map;
 
 public class InsuranceCardCreator {
     private SystemStorageManager systemStorageManager;
-    private SystemView systemView;
+    private SystemViewManager systemViewManager;
 
     public InsuranceCardCreator() {
     }
 
-    public InsuranceCardCreator(SystemStorageManager systemStorageManager, SystemView systemView) {
+    public InsuranceCardCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         this.systemStorageManager = systemStorageManager;
-        this.systemView = systemView;
+        this.systemViewManager = systemViewManager;
     }
 
     public InsuranceCard create(Map<String, String> data) {
-        MessageView messageView = systemView.getMessageView();
-        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerManager();
-        InsuranceCardStorage cardManager = systemStorageManager.getCardManager();
+        MessageView messageView = systemViewManager.getMessageView();
+        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
+        InsuranceCardStorage cardStorage = systemStorageManager.getCardStorage();
 
         String cardHolderId = data.get(InsuranceCardView.CARD_HOLDER);
 
@@ -48,14 +48,14 @@ public class InsuranceCardCreator {
         try {
             TypeConverter<Date> dateConverter = new DateConverter();
             Date exipryDate = dateConverter.fromString(data.get(InsuranceCardView.EXPIRY_DATE));
-            String cardNumber = cardManager.generateId();
+            String cardNumber = cardStorage.generateId();
 
             Customer cardHolder = customerStorageManager.getCustomer(cardHolderId);
             cardHolder.setInsuranceCardNumber(cardNumber);
 
             InsuranceCard newCard = new InsuranceCard(cardNumber, cardHolderId, policyOwner, exipryDate);
 
-            return cardManager.add(newCard);
+            return cardStorage.add(newCard);
 
         } catch (Exception e) {
             messageView.displayError("Invalid Date");

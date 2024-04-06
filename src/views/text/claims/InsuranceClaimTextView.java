@@ -7,6 +7,7 @@ import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
 import views.io.ConsoleReader;
 import views.io.DataReader;
+import views.system.ViewCode;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -73,5 +74,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     @Override
     public void displaySuccessAddMsg() {
         System.out.println("Successfully added new Insurance Claim!");
+    }
+
+    @Override
+    public String getId() {
+        return ViewCode.INSURANCE_CLAIMS;
     }
 }

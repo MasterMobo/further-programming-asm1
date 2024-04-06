@@ -3,7 +3,7 @@ package controllers.customers;
 import controllers.customers.creators.DependentCreator;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 import views.general.customers.DependentView;
 
 import java.util.Map;
@@ -14,14 +14,14 @@ public class DependentController extends CustomerController{
         creator = new DependentCreator();
     }
 
-    public DependentController(SystemStorageManager systemStorageManager, SystemView systemView) {
-        super(systemStorageManager, systemView);
-        creator = new DependentCreator(systemStorageManager, systemView);
+    public DependentController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
+        super(systemStorageManager, systemViewManager);
+        creator = new DependentCreator(systemStorageManager, systemViewManager);
     }
 
     @Override
     public Customer add() {
-        DependentView dependentView = systemView.getDependentView();
+        DependentView dependentView = systemViewManager.getDependentView();
 
         Map<String, String> data = dependentView.displayAddForm();
 

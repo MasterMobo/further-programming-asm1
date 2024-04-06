@@ -5,7 +5,7 @@ import controllers.AddableController;
 import models.card.InsuranceCard;
 import models.system.SystemStorageManager;
 import views.general.InsuranceCardView;
-import views.general.SystemView;
+import views.system.SystemViewManager;
 
 import java.util.Map;
 
@@ -16,14 +16,14 @@ public class InsuranceCardController extends Controller<InsuranceCard> implement
         creator = new InsuranceCardCreator();
     }
 
-    public InsuranceCardController(SystemStorageManager systemStorageManager, SystemView systemView) {
-        super(systemStorageManager, systemView);
-        creator = new InsuranceCardCreator(systemStorageManager, systemView);
+    public InsuranceCardController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
+        super(systemStorageManager, systemViewManager);
+        creator = new InsuranceCardCreator(systemStorageManager, systemViewManager);
     }
 
     @Override
     public InsuranceCard add() {
-        InsuranceCardView cardView = systemView.getInsuranceCardView();
+        InsuranceCardView cardView = systemViewManager.getInsuranceCardView();
 
         Map<String, String> data = cardView.displayAddForm();
         InsuranceCard newCard = creator.create(data);
