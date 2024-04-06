@@ -1,6 +1,8 @@
 package views.general;
 
 import models.card.InsuranceCard;
+import views.general.operations.AddView;
+import views.general.operations.ItemDisplayView;
 import views.system.StorableView;
 
 public interface InsuranceCardView extends AddView, ItemDisplayView<InsuranceCard>, StorableView {

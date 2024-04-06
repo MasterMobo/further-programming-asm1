@@ -1,10 +1,11 @@
 package controllers.claims;
 
-import controllers.helpers.Creator;
-import models.claims.InsuranceClaimStorage;
+import controllers.helpers.Updater;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;
+import models.claims.InsuranceClaimStorage;
 import models.customer.CustomerStorageManager;
+import models.customer.roles.CustomerRoleStorage;
 import models.system.SystemStorageManager;
 import utils.converters.DateConverter;
 import utils.converters.DoubleConverter;
@@ -18,46 +19,51 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimCreator implements Creator<InsuranceClaim> {
+public class InsuranceClaimUpdater implements Updater<InsuranceClaim> {
     private SystemStorageManager systemStorageManager;
     private SystemViewManager systemViewManager;
 
-    public InsuranceClaimCreator() {
+    public InsuranceClaimUpdater() {
     }
 
-    public InsuranceClaimCreator(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
+    public InsuranceClaimUpdater(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
         this.systemStorageManager = systemStorageManager;
         this.systemViewManager = systemViewManager;
     }
 
+
     @Override
-    public InsuranceClaim create(Map<String, String> data) {
-        // Get the storages
-        CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
-        InsuranceClaimStorage claimStorage = systemStorageManager.getClaimStorage();
+    public InsuranceClaim update(Map<String, String> data) {
+        CustomerStorageManager customers = systemStorageManager.getCustomerStorageManager();
+        InsuranceClaimStorage insuranceClaims = systemStorageManager.getClaimStorage();
 
-        // Get the views
-        MessageView messageView = systemViewManager.getMessageView();
+        MessageView message = systemViewManager.getMessageView();
 
-        // Get the converters
         TypeConverter<Date> dateConverter = new DateConverter();
         TypeConverter<Double> doubleConverter = new DoubleConverter();
 
-        // Get Customer ID
-        String insuredPersonId = data.get(InsuranceClaimView.INSURED_PERSON);
+        String claimId = data.get(InsuranceClaimView.CLAIM_ID);
 
-        if (!customerStorageManager.customerExists(insuredPersonId)) {
-            messageView.displayError("Customer does not exist");
+        if (!insuranceClaims.exists(claimId)) {
+            message.displayError("Claim does not exist");
             return null;
         }
 
-        if (!customerStorageManager.hasInsuranceCard(insuredPersonId)) {
-            messageView.displayError("This customer does not have an insurance card");
+
+        String insuredId = data.get(InsuranceClaimView.INSURED_PERSON);
+
+        if (!customers.customerExists(insuredId)) {
+            message.displayError("Customer does not exist");
+            return null;
+        }
+
+        if (!customers.hasInsuranceCard(insuredId)) {
+            message.displayError("This customer does not have an insurance card");
             return null;
         }
 
         // Get remaining claim info
-        String cardNum = customerStorageManager.getCardNumber(insuredPersonId);
+        String cardNum = customers.getCardNumber(insuredId);
         List<String> documentNames = parseDocuments(data.get(InsuranceClaimView.DOCUMENTS));
         String bankInfo = data.get(InsuranceClaimView.RECEIVER_BANK);
         double claimAmount = doubleConverter.fromString(data.get(InsuranceClaimView.CLAIM_AMOUNT));
@@ -68,21 +74,20 @@ public class InsuranceClaimCreator implements Creator<InsuranceClaim> {
             Date claimDate = dateConverter.fromString(data.get(InsuranceClaimView.CLAIM_DATE));
             Date examDate = dateConverter.fromString(data.get(InsuranceClaimView.EXAM_DATE));
 
-            String claimId = claimStorage.generateId();
             List<String> documents = formatDocumentNames(claimId, cardNum, documentNames);
 
-            InsuranceClaim newClaim = new InsuranceClaim(claimId, claimDate, insuredPersonId, cardNum, examDate, documents, claimAmount, claimStatus, bankInfo);
+            InsuranceClaim newClaim = new InsuranceClaim(claimId, claimDate, insuredId, cardNum, examDate, documents, claimAmount, claimStatus, bankInfo);
 
-            return claimStorage.add(newClaim);
+            return insuranceClaims.update(claimId, newClaim);
 
         } catch (IllegalArgumentException e) {
             if (e.getMessage().contains("enum")) {
-                messageView.displayError("Invalid Status");
+                message.displayError("Invalid Status");
                 return null;
             }
 
             // The remaining exception should be from date conversion
-            messageView.displayError("Invalid Date");
+            message.displayError("Invalid Date");
             return null;
         }
     }
@@ -99,4 +104,5 @@ public class InsuranceClaimCreator implements Creator<InsuranceClaim> {
 
         return res;
     }
+
 }

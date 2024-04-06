@@ -1,12 +1,13 @@
 package controllers.customers.creators;
 
+import controllers.helpers.Creator;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
 import views.system.SystemViewManager;
 
 import java.util.Map;
 
-public abstract class CustomerCreator {
+public abstract class CustomerCreator implements Creator<Customer> {
     // This class deals with the creation logic for every customer role in the system.
     // Extend this class to customize how different roles are created.
 

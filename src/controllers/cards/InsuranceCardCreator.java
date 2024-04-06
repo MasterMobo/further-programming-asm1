@@ -1,5 +1,6 @@
 package controllers.cards;
 
+import controllers.helpers.Creator;
 import models.card.InsuranceCard;
 import models.card.InsuranceCardStorage;
 import models.customer.Customer;
@@ -14,7 +15,7 @@ import views.system.SystemViewManager;
 import java.util.Date;
 import java.util.Map;
 
-public class InsuranceCardCreator {
+public class InsuranceCardCreator implements Creator<InsuranceCard> {
     private SystemStorageManager systemStorageManager;
     private SystemViewManager systemViewManager;
 

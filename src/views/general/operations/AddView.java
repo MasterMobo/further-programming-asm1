@@ -1,4 +1,4 @@
-package views.general;
+package views.general.operations;
 
 import java.util.Map;
 

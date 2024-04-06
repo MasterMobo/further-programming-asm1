@@ -1,7 +1,6 @@
 package views.text.claims;
 
 import models.claims.InsuranceClaim;
-import utils.converters.DateConverter;
 import utils.converters.IntegerConverter;
 import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
@@ -9,7 +8,6 @@ import views.io.ConsoleReader;
 import views.io.DataReader;
 import views.system.ViewCode;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,16 +15,21 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
 
     @Override
     public void displayItem(InsuranceClaim claim) {
-        // TODO: fill this out
-        System.out.println("Insurance Claim: " + claim.getId());
+        System.out.println("Insurance Claim (" + claim.getId() + "): "
+                            + "\n\tInsured Customer ID: " + claim.getInsuredPersonId()
+                            + "\n\tInsurance Card Number: " + claim.getCardNumber()
+                            + "\n\tClaim Date: " + claim.getClaimDate()
+                            + "\n\tClaim Status: " + claim.getStatus()
+                            + "\n\tClaim Amount: " + claim.getClaimAmount()
+                            + "\n\tExam Date: " + claim.getExamDate()
+                            + "\n\tReceiver Bank Info: " + claim.getReceiverBankInfo()
+                            + "\n\tDocuments: " + claim.getDocuments()
+        );
     }
 
-    @Override
-    public Map<String, String> displayAddForm() {
+    private Map<String, String> displayBasicForm() {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
-
-        System.out.println("---Adding new Insurance Claim---");
 
         System.out.print("Enter Insured Customer Id: ");
         data.put(INSURED_PERSON, reader.read());
@@ -43,23 +46,43 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         System.out.print("Enter Claim Status (new, done, processing): ");
         data.put(CLAIM_STATUS, reader.read());
 
-        System.out.println("Enter Receiver Bank Info (Bank – Name – Number): ");
-        data.put(RECEIVER_BANK, reader.read());
+        String bankInfo = displayBankInfoForm();
+        data.put(RECEIVER_BANK, bankInfo);
 
-        String documents = displayDocumentCreateForm();
-        System.out.println(documents);
+        String documents = displayDocumentForm();
         data.put(DOCUMENTS, documents);
 
         return data;
     }
 
-    private String displayDocumentCreateForm() {
+    @Override
+    public Map<String, String> displayAddForm() {
+        System.out.println("---Adding new Insurance Claim---");
+        return displayBasicForm();
+    }
+
+    @Override
+    public Map<String, String> displayUpdateForm() {
+        System.out.println("---Updating Insurance Claim---");
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+
+        System.out.print("Enter Insurance Claim Id to Update: ");
+        data.put(CLAIM_ID, reader.read());
+
+        data.putAll(displayBasicForm());
+        return data;
+    }
+
+    private String displayDocumentForm() {
         DataReader reader = ConsoleReader.getInstance();
         TypeConverter<Integer> intConverter = new IntegerConverter();
 
         StringBuilder documents = new StringBuilder();
         System.out.println("How many documents would you want to create for this claim? ");
-        int docCount = intConverter.fromString(reader.read());
+        String input = reader.read();
+
+        int docCount = intConverter.fromString(input);
 
         for (int i = 1; i <= docCount; i++) {
             System.out.print("Enter Document " + i + " Name: ");
@@ -71,11 +94,31 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         return documents.toString();
     }
 
+    private String displayBankInfoForm() {
+        DataReader reader = ConsoleReader.getInstance();
+        String s = "";
+
+        System.out.print("Enter Bank Name: ");
+        s += reader.read() + "-";
+
+        System.out.print("Enter Account Name: ");
+        s += reader.read() + "-";
+
+        System.out.print("Enter Account Number: ");
+        s += reader.read();
+
+        return s;
+    }
+
     @Override
     public void displaySuccessAddMsg() {
         System.out.println("Successfully added new Insurance Claim!");
     }
 
+    @Override
+    public void displaySuccessUpdateMsg() {
+        System.out.println("Successfully updated Insurance Claim!");
+    }
     @Override
     public String getId() {
         return ViewCode.INSURANCE_CLAIMS;

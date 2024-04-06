@@ -47,9 +47,10 @@ public class Main {
         String input = "";
         while (!input.equals("q")) {
             policyHolderController.add();
-            dependentController.add();
+//            dependentController.add();
             cardController.add();
             claimController.add();
+            claimController.update();
 
             input = reader.read();
         }

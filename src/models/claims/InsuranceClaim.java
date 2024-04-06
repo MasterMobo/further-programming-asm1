@@ -46,4 +46,35 @@ public class InsuranceClaim implements StorageItem {
         return id;
     }
 
+    public Date getClaimDate() {
+        return claimDate;
+    }
+
+    public String getInsuredPersonId() {
+        return insuredPersonId;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public Date getExamDate() {
+        return examDate;
+    }
+
+    public List<String> getDocuments() {
+        return documents;
+    }
+
+    public double getClaimAmount() {
+        return claimAmount;
+    }
+
+    public InsuranceClaimStatus getStatus() {
+        return status;
+    }
+
+    public String getReceiverBankInfo() {
+        return receiverBankInfo;
+    }
 }

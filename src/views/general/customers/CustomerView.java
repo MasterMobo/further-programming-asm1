@@ -1,8 +1,8 @@
 package views.general.customers;
 
 import models.customer.Customer;
-import views.general.AddView;
-import views.general.ItemDisplayView;
+import views.general.operations.AddView;
+import views.general.operations.ItemDisplayView;
 import views.system.StorableView;
 
 public interface CustomerView extends AddView, ItemDisplayView<Customer>, StorableView {
