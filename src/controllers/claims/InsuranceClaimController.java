@@ -66,6 +66,8 @@ public class InsuranceClaimController extends Controller<InsuranceClaim> impleme
 
         if (res == null) return null;
 
+        claimView.displayManyClaims(res);
+
         return res.get(0);  // Returning only the main claims. Might change later lol.
     }
 }

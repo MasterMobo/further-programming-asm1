@@ -148,8 +148,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
 
-        System.out.print("Enter Customer ID: ");
-        data.put(InsuranceClaimView.INSURED_PERSON, reader.read());
+        System.out.println("--Getting Insurance Claims---");
+
+        System.out.print("Enter Customer ID (leave empty to get all claims): ");
+        data.put(InsuranceClaimView.INSURED_PERSON, reader.read().trim());
 
         return data;
     }

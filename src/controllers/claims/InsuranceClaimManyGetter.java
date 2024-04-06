@@ -5,6 +5,7 @@ import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStorage;
 import models.customer.Customer;
 import models.customer.CustomerStorageManager;
+import models.customer.roles.dependent.Dependent;
 import models.customer.roles.holder.PolicyHolder;
 import models.system.SystemStorageManager;
 import views.general.InsuranceClaimView;
@@ -55,9 +56,9 @@ public class InsuranceClaimManyGetter extends ControllerOperator<List<List<Insur
         // Get the customer claims
         res.set(0, claims.getClaimsOfCustomer(insuredId));
 
-        // Check if customer is a Dependent
+        // If customer is dependent, they should not have any dependent claims, return result
         Customer customer = customers.getCustomer(insuredId);
-        if (!(customer instanceof PolicyHolder)) {
+        if (customer instanceof Dependent) {
             return res;
         }
 
