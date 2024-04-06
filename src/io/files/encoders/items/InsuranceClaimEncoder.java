@@ -12,8 +12,8 @@ public class InsuranceClaimEncoder extends StringEncoder<InsuranceClaim> {
                 + item.getCardNumber() + DataSeparator.ATTRIBUTE
                 + item.getClaimAmount() + DataSeparator.ATTRIBUTE
                 + item.getStatus() + DataSeparator.ATTRIBUTE
-                + item.getClaimDate() + DataSeparator.ATTRIBUTE
-                + item.getExamDate() + DataSeparator.ATTRIBUTE
+                + encodeDate(item.getClaimDate()) + DataSeparator.ATTRIBUTE
+                + encodeDate(item.getExamDate()) + DataSeparator.ATTRIBUTE
                 + item.getReceiverBankInfo() + DataSeparator.ATTRIBUTE
                 + encodeList(item.getDocuments());
     }

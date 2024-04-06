@@ -10,6 +10,6 @@ public class InsuranceCardEncoder extends StringEncoder<InsuranceCard> {
         return item.getCardNumber() + DataSeparator.ATTRIBUTE
                 + item.getCardHolderId() + DataSeparator.ATTRIBUTE
                 + item.getPolicyOwner() + DataSeparator.ATTRIBUTE
-                + item.getExpirationDate();
+                + encodeDate(item.getExpirationDate());
     }
 }
