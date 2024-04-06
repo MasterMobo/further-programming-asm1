@@ -1,6 +1,7 @@
 package controllers.customers;
 
 import controllers.customers.creators.PolicyHolderCreator;
+import controllers.system.ControllerCode;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
 import views.system.SystemViewManager;
@@ -26,4 +27,8 @@ public class PolicyHolderController extends CustomerController{
         return executeOperator(creator, data, policyHolderView);
     }
 
+    @Override
+    public String getId() {
+        return ControllerCode.POLICY_HOLDER;
+    }
 }

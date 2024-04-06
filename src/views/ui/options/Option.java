@@ -1,11 +1,14 @@
 package views.ui.options;
 
+import controllers.system.SystemControllerManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Option {
     protected String title;
     protected List<Option> children;
+    protected SystemControllerManager controllers;
 
     public Option(String title) {
         this.title = title;

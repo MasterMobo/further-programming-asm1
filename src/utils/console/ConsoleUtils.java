@@ -2,7 +2,7 @@ package utils.console;
 
 public class ConsoleUtils {
     public static void clearScreen(){
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 20; i++) {
             System.out.println("\n");
         }
     }

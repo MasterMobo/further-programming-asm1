@@ -1,6 +1,7 @@
 package controllers.customers;
 
 import controllers.customers.creators.DependentCreator;
+import controllers.system.ControllerCode;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
 import views.system.SystemViewManager;
@@ -24,5 +25,10 @@ public class DependentController extends CustomerController{
         DependentCreator creator = new DependentCreator(systemStorageManager, systemViewManager);
 
         return executeOperator(creator, data, dependentView);
+    }
+
+    @Override
+    public String getId() {
+        return ControllerCode.DEPENDENTS;
     }
 }

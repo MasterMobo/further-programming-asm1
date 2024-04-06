@@ -12,8 +12,11 @@ import java.util.Map;
 public class DependentTextView extends CustomerTextView implements DependentView {
     @Override
     public void displayItem(Customer customer) {
-        System.out.println("Dependent(" + customer.getId() + "): " + customer.getFullName());
-    }
+        System.out.println("Dependent (" + customer.getId() + "): "
+                + "\n\t Full Name: " + customer.getFullName()
+                + "\n\t Insurance Card: " + customer.getInsuranceCardNumber()
+        );
+        System.out.println();    }
 
     @Override
     public Map<String, String> displayAddForm() {

@@ -4,7 +4,7 @@ import views.ui.options.Option;
 
 public class CustomerOption extends Option {
     public CustomerOption() {
-        super("Customer");
+        super("Customers");
     }
 
     @Override

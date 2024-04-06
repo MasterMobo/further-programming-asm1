@@ -12,8 +12,7 @@ public class OptionTree implements OptionManager{
     private Option root;
     private Stack<Option> callStack;
 
-    public OptionTree() {
-        OptionBuilder builder = new OptionBuilder();
+    public OptionTree(OptionBuilder builder) {
         this.root = builder.createRoot();
 
         callStack = new Stack<>();
@@ -54,7 +53,7 @@ public class OptionTree implements OptionManager{
             execute();
 
         } catch (IllegalArgumentException e) {
-            handleStringInput(input);
+            if (!handleStringInput(input)) return;
         }
 
     }
@@ -67,27 +66,34 @@ public class OptionTree implements OptionManager{
             System.out.println((i + 1) + " - " + child.getTitle());
         }
 
+        System.out.println();
+        System.out.println("---Other Options---");
         System.out.println("b - Back to Previous");
         System.out.println("r - Return to Main Menu");
+        System.out.println("q - Quit Program");
 
         System.out.println("Enter your choice:");
     }
 
-    private void handleStringInput(String s) {
+    private boolean handleStringInput(String s) {
         switch (s) {
             case "b" -> {
                 returnToPrevious();
                 execute();
+                return true;
             }
             case "r" -> {
                 reset();
+                execute();
+                return true;
             }
             case "q" -> {
-
+                return false;
             }
             default -> {
                 System.out.println("Invalid Choice. Please try Again");
                 execute();
+                return true;
             }
         }
     }
@@ -95,8 +101,6 @@ public class OptionTree implements OptionManager{
     private void reset() {
         callStack.removeAllElements();
         callStack.add(root);
-        execute();
-        // TODO: do i need execute here?
     }
 
     private boolean indexInvalid(int index) {
@@ -108,6 +112,7 @@ public class OptionTree implements OptionManager{
         callStack.pop();
         if (callStack.isEmpty()) {
             reset();
+            execute();
         }
     }
 }

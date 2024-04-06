@@ -2,6 +2,7 @@ package controllers.cards;
 
 import controllers.Controller;
 import controllers.AddableController;
+import controllers.system.ControllerCode;
 import models.card.InsuranceCard;
 import models.system.SystemStorageManager;
 import views.general.InsuranceCardView;
@@ -25,5 +26,10 @@ public class InsuranceCardController extends Controller<InsuranceCard> implement
         Map<String, String> data = cardView.displayAddForm();
 
         return executeOperator(creator, data, cardView);
+    }
+
+    @Override
+    public String getId() {
+        return ControllerCode.INSURANCE_CARDS;
     }
 }

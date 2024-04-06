@@ -1,14 +1,18 @@
 package views.ui.options.claims;
 
+import controllers.claims.InsuranceClaimController;
+import controllers.system.SystemControllerManager;
 import views.ui.options.Option;
 
 public class GetManyClaimOption extends Option {
-    public GetManyClaimOption() {
+    public GetManyClaimOption(SystemControllerManager controllers) {
         super("Get all Insurance Claims from a Customer/the System");
+        this.controllers = controllers;
     }
 
     @Override
     public void execute() {
-        System.out.println(title);
+        InsuranceClaimController controller = controllers.getInsuranceClaimController();
+        controller.getMany();
     }
 }

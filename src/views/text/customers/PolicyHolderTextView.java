@@ -13,7 +13,11 @@ public class PolicyHolderTextView extends CustomerTextView implements PolicyHold
 
     @Override
     public void displayItem(Customer customer) {
-        System.out.println("Policy Holder(" + customer.getId() + "): " + customer.getFullName());
+        System.out.println("Policy Holder(" + customer.getId() + "): "
+                            + "\n\t Full Name: " + customer.getFullName()
+                            + "\n\t Insurance Card: " + customer.getInsuranceCardNumber()
+        );
+        System.out.println();
     }
 
     @Override

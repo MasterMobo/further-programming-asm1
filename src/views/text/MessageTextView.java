@@ -1,22 +1,23 @@
 package views.text;
 
+import utils.console.ConsoleColors;
 import views.general.MessageView;
 import views.system.ViewCode;
 
 public class MessageTextView implements MessageView {
     @Override
     public void displayMessage(String s) {
-        System.out.println(s);
+        System.out.println(ConsoleColors.BLUE + s + ConsoleColors.RESET);
     }
 
     @Override
     public void displayError(String s) {
-        System.out.println(s);
+        System.out.println(ConsoleColors.RED + s + ConsoleColors.RESET);
     }
 
     @Override
     public void displayWarning(String s) {
-        System.out.println(s);
+        System.out.println(ConsoleColors.YELLOW + s + ConsoleColors.RESET);
     }
 
     @Override

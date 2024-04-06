@@ -1,6 +1,7 @@
 package controllers;
 
 import models.claims.InsuranceClaim;
+import models.storage.StorageItem;
 import models.system.SystemStorageManager;
 import views.general.MessageView;
 import views.general.operations.ItemDisplayView;
@@ -8,7 +9,7 @@ import views.system.SystemViewManager;
 
 import java.util.Map;
 
-public abstract class Controller<T>{
+public abstract class Controller<T> implements StorageItem {
     // Model
     protected SystemStorageManager systemStorageManager;
 

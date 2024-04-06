@@ -1,6 +1,7 @@
 package controllers.claims;
 
 import controllers.*;
+import controllers.system.ControllerCode;
 import models.claims.InsuranceClaim;
 import models.system.SystemStorageManager;
 import views.general.InsuranceClaimView;
@@ -69,5 +70,10 @@ public class InsuranceClaimController extends Controller<InsuranceClaim> impleme
         claimView.displayManyClaims(res);
 
         return res.get(0);  // Returning only the main claims. Might change later lol.
+    }
+
+    @Override
+    public String getId() {
+        return ControllerCode.INSURANCE_CLAIMS;
     }
 }
