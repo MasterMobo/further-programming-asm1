@@ -77,18 +77,24 @@ public class InsuranceClaimSystem {
     }
 
     public void start() {
-        SystemStorageManager systemStorageManager = initSystemStorage();
+        try {
+            SystemStorageManager systemStorageManager = initSystemStorage();
 
-        FileManager.setSystemStorageManager(systemStorageManager);
-        FileManager fileManager = FileManager.getInstance();
-        systemStorageManager = fileManager.initializeDataFiles();
-        FileManager.setSystemStorageManager(systemStorageManager);
+            FileManager.setSystemStorageManager(systemStorageManager);
+            FileManager fileManager = FileManager.getInstance();
+            systemStorageManager = fileManager.initializeDataFiles();
+            FileManager.setSystemStorageManager(systemStorageManager);
 
 
-        SystemViewManager systemViewManager = initSystemView();
-        SystemControllerManager systemControllerManager = initSystemController(systemStorageManager, systemViewManager);
-        OptionManager menu = initSystemMenu(systemControllerManager);
+            SystemViewManager systemViewManager = initSystemView();
+            SystemControllerManager systemControllerManager = initSystemController(systemStorageManager, systemViewManager);
+            OptionManager menu = initSystemMenu(systemControllerManager);
 
-        menu.execute();
+            menu.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong, please try again.");
+        }
+
     }
 }
