@@ -1,4 +1,4 @@
-package views.io;
+package io.readers;
 
 public interface DataReader {
     // Reads data from anywhere and return it as string

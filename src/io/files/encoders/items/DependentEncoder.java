@@ -1,13 +1,14 @@
-package io.encoders;
+package io.files.encoders.items;
 
-import io.Separator;
+import io.files.DataSeparator;
+import io.files.encoders.StringEncoder;
 import models.customer.roles.dependent.Dependent;
 
 public class DependentEncoder extends StringEncoder<Dependent> {
     @Override
     public String encode(Dependent item) {
-        return item.getId() + Separator.OBJECT
-                + item.getFullName() + Separator.OBJECT
+        return item.getId() + DataSeparator.ATTRIBUTE
+                + item.getFullName() + DataSeparator.ATTRIBUTE
                 + item.getInsuranceCardNumber();
     }
 }

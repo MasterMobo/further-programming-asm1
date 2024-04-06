@@ -11,6 +11,11 @@ public class Dependent extends Customer {
         super(id, fullName);
     }
 
+    public Dependent(String id, String fullName, String insuranceCardNumber) {
+        super(id, fullName);
+        this.insuranceCardNumber = insuranceCardNumber;
+    }
+
     @Override
     public String toString() {
         return "Policy Holder (" + id + "): " + fullName + "\t" + "Card Number: " + insuranceCardNumber;

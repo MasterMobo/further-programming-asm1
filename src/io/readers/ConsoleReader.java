@@ -1,4 +1,4 @@
-package views.io;
+package io.readers;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class ConsoleReader implements DataReader{
     private static ConsoleReader instance;
     private static Scanner scanner;
 
-    public ConsoleReader() {
+    private ConsoleReader() {
         scanner = new Scanner(System.in);
     }
 

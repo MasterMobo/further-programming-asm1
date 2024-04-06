@@ -2,8 +2,8 @@ package views.text.customers;
 
 import models.customer.Customer;
 import views.general.customers.DependentView;
-import views.io.ConsoleReader;
-import views.io.DataReader;
+import io.readers.ConsoleReader;
+import io.readers.DataReader;
 import views.system.ViewCode;
 
 import java.util.HashMap;

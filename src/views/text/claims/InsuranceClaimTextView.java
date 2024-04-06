@@ -5,8 +5,8 @@ import utils.console.ConsoleColors;
 import utils.converters.IntegerConverter;
 import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
-import views.io.ConsoleReader;
-import views.io.DataReader;
+import io.readers.ConsoleReader;
+import io.readers.DataReader;
 import views.system.ViewCode;
 
 import java.util.HashMap;

@@ -5,7 +5,10 @@ import controllers.customers.DependentController;
 import controllers.customers.PolicyHolderController;
 import controllers.system.SystemControllerManager;
 import controllers.system.SystemControllerStorage;
+import io.files.FileManager;
+import main.InsuranceClaimSystem;
 import models.card.InsuranceCardMapStorage;
+import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimMapStorage;
 import models.customer.CustomerStorageManager;
 import models.customer.CustomerStorageMap;
@@ -24,36 +27,7 @@ import views.ui.options.OptionTree;
 // TODO: Global (or at least entry level) try-catch so that program doesn't end when error
 public class Main {
     public static void main(String[] args) {
-        CustomerStorageManager customerStorageManager = new CustomerStorageMap();
-        customerStorageManager.add(new PolicyHolderMapStorage());
-        customerStorageManager.add(new DependentMapStorage());
-
-        SystemStorageManager systemStorageManager = new SystemStorageMap();
-        systemStorageManager.add(customerStorageManager);
-        systemStorageManager.add(new InsuranceCardMapStorage());
-        systemStorageManager.add(new InsuranceClaimMapStorage());
-
-        ViewFactory viewFactory = new TextViewFactory();
-        SystemViewManager systemViewManager = new SystemViewMap();
-        systemViewManager.add(viewFactory.createMessageView());
-        systemViewManager.add(viewFactory.createPolicyHolderView());
-        systemViewManager.add(viewFactory.createDependentView());
-        systemViewManager.add(viewFactory.createInsuranceCardView());
-        systemViewManager.add(viewFactory.createInsuranceClaimView());
-
-        CustomerController policyHolderController = new PolicyHolderController(systemStorageManager, systemViewManager);
-        CustomerController dependentController = new DependentController(systemStorageManager, systemViewManager);
-        InsuranceCardController cardController = new InsuranceCardController(systemStorageManager, systemViewManager);
-        InsuranceClaimController claimController = new InsuranceClaimController(systemStorageManager, systemViewManager);
-
-        SystemControllerManager systemControllerManager = new SystemControllerStorage();
-        systemControllerManager.add(policyHolderController);
-        systemControllerManager.add(dependentController);
-        systemControllerManager.add(cardController);
-        systemControllerManager.add(claimController);
-
-        OptionBuilder builder = new OptionBuilder(systemControllerManager);
-        OptionManager menu = new OptionTree(builder);
-        menu.execute();
+        InsuranceClaimSystem system = new InsuranceClaimSystem();
+        system.start();
     }
 }

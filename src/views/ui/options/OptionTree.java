@@ -1,11 +1,12 @@
 package views.ui.options;
 
+import io.files.FileManager;
 import utils.console.ConsoleColors;
 import utils.console.ConsoleUtils;
 import utils.converters.IntegerConverter;
 import utils.converters.TypeConverter;
-import views.io.ConsoleReader;
-import views.io.DataReader;
+import io.readers.ConsoleReader;
+import io.readers.DataReader;
 
 import java.util.Stack;
 
@@ -95,6 +96,8 @@ public class OptionTree implements OptionManager{
                 return true;
             }
             case "q" -> {
+                FileManager fileManager = FileManager.getInstance();
+                fileManager.save();
                 return false;
             }
             default -> {

@@ -2,8 +2,8 @@ package views.text.cards;
 
 import models.card.InsuranceCard;
 import views.general.InsuranceCardView;
-import views.io.ConsoleReader;
-import views.io.DataReader;
+import io.readers.ConsoleReader;
+import io.readers.DataReader;
 import views.system.ViewCode;
 
 import java.util.HashMap;
