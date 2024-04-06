@@ -24,6 +24,8 @@ import views.ui.options.OptionBuilder;
 import views.ui.options.OptionManager;
 import views.ui.options.OptionTree;
 
+import java.util.Arrays;
+
 // TODO: Global (or at least entry level) try-catch so that program doesn't end when error
 public class Main {
     public static void main(String[] args) {

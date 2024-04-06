@@ -5,6 +5,8 @@ import io.files.decoders.StringDecoder;
 import models.storage.Storage;
 import models.storage.StorageItem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class StorageDecoder<T extends Storage<K>, K extends StorageItem> {
@@ -20,7 +22,6 @@ public abstract class StorageDecoder<T extends Storage<K>, K extends StorageItem
 
     public T decode(String s) {
         if (s.equals("")) return storage;
-        System.out.println(parseItems(s));
         for (String itemString: parseItems(s)){
             K item = itemDecoder.decode(itemString);
             storage.add(item);
@@ -29,6 +30,6 @@ public abstract class StorageDecoder<T extends Storage<K>, K extends StorageItem
     }
 
     private List<String> parseItems(String s) {
-        return List.of(s.split(DataSeparator.STORAGE_ITEM));
+        return new ArrayList<>(Arrays.asList(s.split(DataSeparator.STORAGE_ITEM)));
     }
 }
