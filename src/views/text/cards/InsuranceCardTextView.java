@@ -23,7 +23,7 @@ public class InsuranceCardTextView implements InsuranceCardView {
         System.out.println("Insurance Card (" + card.getCardNumber() +"): ");
         System.out.println("\tCard Holder ID: " + card.getCardHolderId() );
         System.out.println("\tPolicy Owner: " + card.getPolicyOwner());
-        System.out.println("\tExpiry Date: " + card.getExpirationDate());
+        System.out.println("\tExpiry Date (mm/dd/yyyy): " + card.getExpirationDate());
     }
 
     @Override

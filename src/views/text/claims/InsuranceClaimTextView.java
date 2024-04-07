@@ -42,10 +42,10 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         System.out.print("Enter Insured Customer Id: ");
         data.put(INSURED_PERSON, reader.read());
 
-        System.out.print("Enter Claim Date: ");
+        System.out.print("Enter Claim Date (mm/dd/yyyy): ");
         data.put(CLAIM_DATE, reader.read());
 
-        System.out.print("Enter Exam Date: ");
+        System.out.print("Enter Exam Date (mm/dd/yyyy): ");
         data.put(EXAM_DATE, reader.read());
 
         System.out.print("Enter Claim Amount: ");
