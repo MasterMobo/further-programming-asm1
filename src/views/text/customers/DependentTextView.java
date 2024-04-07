@@ -6,6 +6,8 @@ import utils.console.ConsoleUtils;
 import views.general.customers.DependentView;
 import io.readers.ConsoleReader;
 import io.readers.DataReader;
+import views.sorters.CustomerSorter;
+import views.sorters.Sorter;
 import views.system.ViewCode;
 
 import java.util.HashMap;
@@ -68,7 +70,9 @@ public class DependentTextView extends CustomerTextView<Dependent> implements De
 
     @Override
     public void displayMany(List<Dependent> dependents) {
-        for (Dependent dependent: dependents) {
+        Sorter<Dependent> sorter = new CustomerSorter<>();
+
+        for (Dependent dependent: sorter.sort(dependents)) {
             displayItem(dependent);
         }
     }

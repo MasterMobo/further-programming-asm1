@@ -9,6 +9,8 @@ import views.general.customers.DependentView;
 import views.general.customers.PolicyHolderView;
 import io.readers.ConsoleReader;
 import io.readers.DataReader;
+import views.sorters.CustomerSorter;
+import views.sorters.Sorter;
 import views.system.ViewCode;
 
 import java.util.HashMap;
@@ -76,7 +78,8 @@ public class PolicyHolderTextView extends CustomerTextView<PolicyHolder> impleme
         }
 
         System.out.println("---Dependents---");
-        for (Dependent dependent: dependents) {
+        Sorter<Dependent> sorter = new CustomerSorter<>();
+        for (Dependent dependent: sorter.sort(dependents)) {
             System.out.println("Dependent(" + dependent.getId() + "): " + dependent.getFullName());
         }
 
@@ -84,7 +87,8 @@ public class PolicyHolderTextView extends CustomerTextView<PolicyHolder> impleme
 
     @Override
     public void displayMany(List<PolicyHolder> customers) {
-        for (PolicyHolder ph: customers) {
+        Sorter<PolicyHolder> sorter = new CustomerSorter<>();
+        for (PolicyHolder ph: sorter.sort(customers)) {
             displayItem(ph);
         }
     }

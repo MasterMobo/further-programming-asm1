@@ -5,6 +5,8 @@ import utils.console.ConsoleUtils;
 import views.general.InsuranceCardView;
 import io.readers.ConsoleReader;
 import io.readers.DataReader;
+import views.sorters.InsuranceCardSorter;
+import views.sorters.Sorter;
 import views.system.ViewCode;
 
 import java.util.HashMap;
@@ -99,14 +101,15 @@ public class InsuranceCardTextView implements InsuranceCardView {
     @Override
     public void displayMany(List<List<InsuranceCard>> res) {
         List<InsuranceCard> mainCards = res.get(0);
-        for (InsuranceCard card: mainCards) {
+        Sorter<InsuranceCard> sorter = new InsuranceCardSorter();
+        for (InsuranceCard card: sorter.sort(mainCards)) {
             displayItem(card);
         }
 
         if (res.get(1).size() == 0) return;
 
         System.out.println("---Dependent Cards---");
-        for (InsuranceCard card: res.get(1)) {
+        for (InsuranceCard card: sorter.sort(res.get(1))) {
             displayItem(card);
         }
     }

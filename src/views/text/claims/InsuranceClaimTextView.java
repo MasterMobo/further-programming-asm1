@@ -8,6 +8,8 @@ import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
 import io.readers.ConsoleReader;
 import io.readers.DataReader;
+import views.sorters.InsuranceClaimSorter;
+import views.sorters.Sorter;
 import views.system.ViewCode;
 
 import java.util.HashMap;
@@ -181,13 +183,19 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
             return;
         }
 
-        for (InsuranceClaim mainClaim: res.get(0)) {
+        Sorter<InsuranceClaim> sorter = new InsuranceClaimSorter();
+        int i  = 0;
+        for (InsuranceClaim mainClaim: sorter.sort(res.get(0))) {
             displayItem(mainClaim);
+            System.out.println(i);
         }
 
+        if (res.get(1).size() == 0) {
+            return;
+        }
 
         System.out.println("---Dependent Claims---");
-        for (InsuranceClaim dependentClaim: res.get(1)) {
+        for (InsuranceClaim dependentClaim: sorter.sort(res.get(1))) {
             displayItem(dependentClaim);
         }
     }
