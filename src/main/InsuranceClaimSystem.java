@@ -19,7 +19,7 @@ import models.customer.CustomerStorageMap;
 import models.customer.roles.dependent.DependentMapStorage;
 import models.customer.roles.holder.PolicyHolderMapStorage;
 import models.system.SystemStorageManager;
-import models.system.SystemStorageMap;
+import models.system.SystemMapStorage;
 import views.factories.TextViewFactory;
 import views.factories.ViewFactory;
 import views.system.SystemViewManager;
@@ -40,7 +40,7 @@ public class InsuranceClaimSystem {
         customerStorageManager.add(new PolicyHolderMapStorage());
         customerStorageManager.add(new DependentMapStorage());
 
-        SystemStorageManager systemStorageManager = new SystemStorageMap();
+        SystemStorageManager systemStorageManager = new SystemMapStorage();
         systemStorageManager.add(customerStorageManager);
         systemStorageManager.add(new InsuranceCardMapStorage());
         systemStorageManager.add(new InsuranceClaimMapStorage());

@@ -1,4 +1,4 @@
-package models.storage;
+package models.system;
 
 /**
  * @author <Bui Dang Khoa - s3978482>

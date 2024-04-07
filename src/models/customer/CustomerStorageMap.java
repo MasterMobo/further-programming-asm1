@@ -9,7 +9,7 @@ import models.customer.roles.holder.PolicyHolderStorage;
 import models.customer.roles.CustomerRoleStorage;
 import models.storage.MapStorage;
 import models.storage.PrefixIdGenerator;
-import models.storage.StorageCode;
+import models.system.StorageCode;
 
 import java.util.*;
 

@@ -8,10 +8,9 @@ import models.card.InsuranceCardStorage;
 import models.claims.InsuranceClaimStorage;
 import models.customer.CustomerStorageManager;
 import models.storage.MapStorage;
-import models.storage.StorageCode;
 
-public class SystemStorageMap extends MapStorage<SystemStorable> implements SystemStorageManager {
-    public SystemStorageMap() {
+public class SystemMapStorage extends MapStorage<SystemStorable> implements SystemStorageManager {
+    public SystemMapStorage() {
         super();
     }
 

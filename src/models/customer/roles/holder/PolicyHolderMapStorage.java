@@ -5,7 +5,7 @@ package models.customer.roles.holder;
  */
 
 import models.customer.roles.CustomerRoleMapStorage;
-import models.storage.StorageCode;
+import models.system.StorageCode;
 
 public class PolicyHolderMapStorage extends CustomerRoleMapStorage<PolicyHolder> implements PolicyHolderStorage {
     public PolicyHolderMapStorage() {

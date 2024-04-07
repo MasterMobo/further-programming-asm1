@@ -6,7 +6,7 @@ package models.card;
 
 import models.storage.MapStorage;
 import models.storage.PrefixIdGenerator;
-import models.storage.StorageCode;
+import models.system.StorageCode;
 
 public class InsuranceCardMapStorage extends MapStorage<InsuranceCard> implements InsuranceCardStorage {
     public InsuranceCardMapStorage() {

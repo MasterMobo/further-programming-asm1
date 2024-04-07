@@ -10,7 +10,7 @@ import models.customer.CustomerStorageManager;
 import models.storage.Storage;
 
 public interface SystemStorageManager extends Storage<SystemStorable> {
-    public CustomerStorageManager getCustomerStorageManager();
-    public InsuranceClaimStorage getClaimStorage();
-    public InsuranceCardStorage getCardStorage();
+    CustomerStorageManager getCustomerStorageManager();
+    InsuranceClaimStorage getClaimStorage();
+    InsuranceCardStorage getCardStorage();
 }
