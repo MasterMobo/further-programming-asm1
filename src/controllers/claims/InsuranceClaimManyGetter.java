@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimManyGetter extends ControllerOperator<List<List<InsuranceClaim>>> {
+public class InsuranceClaimManyGetter extends ControllerOperator {
     public InsuranceClaimManyGetter() {
         super();
     }

@@ -1,6 +1,6 @@
-package views.ui.options.customers;
+package views.ui.options.customers.dependents;
 
-import controllers.customers.DependentController;
+import controllers.customers.dependents.DependentController;
 import controllers.system.SystemControllerManager;
 import views.ui.options.Option;
 

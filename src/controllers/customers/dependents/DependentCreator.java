@@ -1,6 +1,6 @@
-package controllers.customers.creators;
+package controllers.customers.dependents;
 
-import models.customer.Customer;
+import controllers.ControllerOperator;
 import models.customer.CustomerStorageManager;
 import models.customer.roles.dependent.Dependent;
 import models.customer.roles.dependent.DependentStorage;
@@ -14,7 +14,7 @@ import views.general.customers.DependentView;
 
 import java.util.Map;
 
-public class DependentCreator extends CustomerCreator{
+public class DependentCreator extends ControllerOperator {
 
     public DependentCreator() {
         super();
@@ -25,7 +25,7 @@ public class DependentCreator extends CustomerCreator{
     }
 
     @Override
-    public Customer execute(Map<String, String> data) {
+    public Dependent execute(Map<String, String> data) {
         MessageView messageView = systemViewManager.getMessageView();
 
         // Get the storages

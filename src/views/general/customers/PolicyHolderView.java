@@ -1,4 +1,9 @@
 package views.general.customers;
 
-public interface PolicyHolderView extends CustomerView{
+import models.customer.roles.holder.PolicyHolder;
+
+import java.util.List;
+
+public interface PolicyHolderView extends CustomerView<PolicyHolder> {
+    void displayWithDependents(List<Object> res);
 }

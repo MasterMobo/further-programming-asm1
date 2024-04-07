@@ -5,6 +5,8 @@ import views.ui.options.cards.AddCardOption;
 import views.ui.options.cards.InsuranceCardOption;
 import views.ui.options.claims.*;
 import views.ui.options.customers.*;
+import views.ui.options.customers.dependents.*;
+import views.ui.options.customers.policy_holders.*;
 
 public class OptionBuilder {
     private SystemControllerManager controllers;
@@ -17,11 +19,18 @@ public class OptionBuilder {
     }
 
     public Option createRoot() {
-        Option dependent = new DependentOption();
-        dependent.addOption(new AddDependentOption(controllers));
-
         Option policyHolder = new PolicyHolderOption();
         policyHolder.addOption(new AddPolicyHolderOption(controllers));
+        policyHolder.addOption(new GetSinglePolicyHolderOption(controllers));
+        policyHolder.addOption(new GetManyPolicyHolderOption(controllers));
+        policyHolder.addOption(new DeletePolicyHolderOption(controllers));
+
+        Option dependent = new DependentOption();
+        dependent.addOption(new AddDependentOption(controllers));
+        dependent.addOption(new GetSingleDependentOption(controllers));
+        dependent.addOption(new GetManyDependentOption(controllers));
+        dependent.addOption(new GetSinglePolicyHolderOption(controllers));
+        dependent.addOption(new DeleteDependentOption(controllers));
 
         Option customer = new CustomerOption();
         customer.addOption(policyHolder);

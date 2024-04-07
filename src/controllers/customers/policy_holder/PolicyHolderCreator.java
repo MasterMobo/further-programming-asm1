@@ -1,6 +1,6 @@
-package controllers.customers.creators;
+package controllers.customers.policy_holder;
 
-import models.customer.Customer;
+import controllers.ControllerOperator;
 import models.customer.CustomerStorageManager;
 import models.customer.roles.holder.PolicyHolder;
 import models.customer.roles.holder.PolicyHolderStorage;
@@ -10,7 +10,7 @@ import views.general.customers.CustomerView;
 
 import java.util.Map;
 
-public class PolicyHolderCreator extends CustomerCreator{
+public class PolicyHolderCreator extends ControllerOperator {
 
     public PolicyHolderCreator() {
         super();
@@ -21,7 +21,7 @@ public class PolicyHolderCreator extends CustomerCreator{
     }
 
     @Override
-    public Customer execute(Map<String, String> data) {
+    public PolicyHolder execute(Map<String, String> data) {
         CustomerStorageManager customerStorageManager = systemStorageManager.getCustomerStorageManager();
 
         String id = customerStorageManager.generateAndAddId();

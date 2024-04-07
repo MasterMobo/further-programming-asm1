@@ -15,7 +15,7 @@ import views.system.SystemViewManager;
 import java.util.Date;
 import java.util.Map;
 
-public class InsuranceCardCreator extends ControllerOperator<InsuranceCard> {
+public class InsuranceCardCreator extends ControllerOperator {
     public InsuranceCardCreator() {
         super();
     }

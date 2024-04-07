@@ -10,7 +10,7 @@ import views.system.SystemViewManager;
 
 import java.util.Map;
 
-public class InsuranceClaimSingleGetter extends ControllerOperator<InsuranceClaim> {
+public class InsuranceClaimSingleGetter extends ControllerOperator {
     public InsuranceClaimSingleGetter() {
         super();
     }

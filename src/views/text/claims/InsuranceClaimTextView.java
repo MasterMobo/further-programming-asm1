@@ -2,6 +2,7 @@ package views.text.claims;
 
 import models.claims.InsuranceClaim;
 import utils.console.ConsoleColors;
+import utils.console.ConsoleUtils;
 import utils.converters.IntegerConverter;
 import utils.converters.TypeConverter;
 import views.general.InsuranceClaimView;
@@ -127,8 +128,8 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     @Override
     public boolean displayDeleteConfirm() {
         DataReader reader = ConsoleReader.getInstance();
-        System.out.println(ConsoleColors.YELLOW + "Are you sure you want to delete this Insurance Claim? (y/n)" + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.RED + "(This action is irreversible)" + ConsoleColors.RESET);
+        ConsoleUtils.printYellow("Are you sure you want to delete this Insurance Claim? (y/n)");
+        ConsoleUtils.printRed("(This action is irreversible)");
 
         return reader.read().equalsIgnoreCase("y");
     }

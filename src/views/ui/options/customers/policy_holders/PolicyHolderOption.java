@@ -1,4 +1,4 @@
-package views.ui.options.customers;
+package views.ui.options.customers.policy_holders;
 
 import views.ui.options.Option;
 

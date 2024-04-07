@@ -1,6 +1,5 @@
 package controllers;
 
-import models.claims.InsuranceClaim;
 import models.storage.StorageItem;
 import models.system.SystemStorageManager;
 import views.general.MessageView;
@@ -24,11 +23,11 @@ public abstract class Controller<T> implements StorageItem {
         this.systemViewManager = systemViewManager;
     }
 
-    public T executeOperator(ControllerOperator<T> operator, Map<String, String> data, ItemDisplayView<T> view) {
+    public T executeOperator(ControllerOperator operator, Map<String, String> data, ItemDisplayView<T> view) {
         // Execute some operation over some data, then display results
         MessageView message = systemViewManager.getMessageView();
 
-        T newItem = operator.execute(data);
+        T newItem = (T) operator.execute(data);
 
         if (newItem == null) return null;
 

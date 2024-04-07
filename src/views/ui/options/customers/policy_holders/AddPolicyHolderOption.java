@@ -1,6 +1,6 @@
-package views.ui.options.customers;
+package views.ui.options.customers.policy_holders;
 
-import controllers.customers.PolicyHolderController;
+import controllers.customers.policy_holder.PolicyHolderController;
 import controllers.system.SystemControllerManager;
 import views.ui.options.Option;
 

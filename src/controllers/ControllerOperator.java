@@ -5,7 +5,7 @@ import views.system.SystemViewManager;
 
 import java.util.Map;
 
-public abstract class ControllerOperator<T> {
+public abstract class ControllerOperator {
     protected SystemStorageManager systemStorageManager;
     protected SystemViewManager systemViewManager;
 
@@ -17,6 +17,6 @@ public abstract class ControllerOperator<T> {
         this.systemViewManager = systemViewManager;
     }
 
-    public abstract T execute(Map<String, String> data);
+    public abstract Object execute(Map<String, String> data);
 
 }

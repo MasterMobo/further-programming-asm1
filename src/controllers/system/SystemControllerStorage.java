@@ -3,8 +3,8 @@ package controllers.system;
 import controllers.Controller;
 import controllers.cards.InsuranceCardController;
 import controllers.claims.InsuranceClaimController;
-import controllers.customers.DependentController;
-import controllers.customers.PolicyHolderController;
+import controllers.customers.dependents.DependentController;
+import controllers.customers.policy_holder.PolicyHolderController;
 import models.storage.MapStorage;
 
 public class SystemControllerStorage extends MapStorage<Controller> implements SystemControllerManager {

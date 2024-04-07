@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceClaimCreator extends ControllerOperator<InsuranceClaim> {
+public class InsuranceClaimCreator extends ControllerOperator {
     public InsuranceClaimCreator() {
         super();
     }

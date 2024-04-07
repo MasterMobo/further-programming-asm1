@@ -12,4 +12,14 @@ public class PolicyHolderMapStorage extends CustomerRoleMapStorage<PolicyHolder>
     public String getId() {
         return StorageCode.POLICY_HOLDERS;
     }
+
+    @Override
+    public PolicyHolder getPolicyHolderOfDependent(String dependentId) {
+        for (PolicyHolder policyHolder: getAll()) {
+            if (policyHolder.getDependentIds().contains(dependentId)) {
+                return policyHolder;
+            }
+        }
+        return null;
+    }
 }

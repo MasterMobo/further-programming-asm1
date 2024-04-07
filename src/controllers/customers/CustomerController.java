@@ -2,12 +2,13 @@ package controllers.customers;
 
 import controllers.Controller;
 import controllers.AddableController;
-import controllers.customers.creators.CustomerCreator;
+import controllers.DeletableController;
+import controllers.GettableController;
 import models.customer.Customer;
 import models.system.SystemStorageManager;
 import views.system.SystemViewManager;
 
-public abstract class CustomerController extends Controller<Customer> implements AddableController<Customer> {
+public abstract class CustomerController<T extends Customer> extends Controller<T> implements AddableController<T>, GettableController<T>, DeletableController<T> {
     public CustomerController() {
         super();
     }
@@ -18,5 +19,5 @@ public abstract class CustomerController extends Controller<Customer> implements
     }
 
     @Override
-    public abstract Customer add();
+    public abstract T add();
 }

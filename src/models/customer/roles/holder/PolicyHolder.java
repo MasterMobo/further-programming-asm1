@@ -32,6 +32,10 @@ public class PolicyHolder extends Customer {
         dependentIds.add(dependentId);
     }
 
+    public void removeDependent(String dependentId) {
+        dependentIds.remove(dependentId);
+    }
+
     @Override
     public String toString() {
         return "Policy Holder (" + id + "): " + fullName + "\t" + "Card Number: " + insuranceCardNumber;

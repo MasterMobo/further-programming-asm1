@@ -1,4 +1,4 @@
-package views.ui.options.customers;
+package views.ui.options.customers.dependents;
 
 import views.ui.options.Option;
 

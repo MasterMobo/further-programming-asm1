@@ -10,7 +10,7 @@ import views.system.SystemViewManager;
 
 import java.util.Map;
 
-public class InsuranceClaimDeleter extends ControllerOperator<InsuranceClaim> {
+public class InsuranceClaimDeleter extends ControllerOperator {
     public InsuranceClaimDeleter() {
         super();
     }
