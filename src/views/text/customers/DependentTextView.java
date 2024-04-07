@@ -79,7 +79,7 @@ public class DependentTextView extends CustomerTextView<Dependent> implements De
         Map<String, String> data = new HashMap<>();
         DataReader reader = ConsoleReader.getInstance();
 
-        System.out.println("Enter Dependent ID to delete: ");
+        System.out.println("Enter Dependent ID to Delete: ");
         data.put(DependentView.CUSTOMER_ID, reader.read());
 
         return data;
@@ -93,5 +93,22 @@ public class DependentTextView extends CustomerTextView<Dependent> implements De
         ConsoleUtils.printRed("(This action is irreversible)");
 
         return reader.read().equalsIgnoreCase("y");
+    }
+
+    @Override
+    public Map<String, String> displayUpdateForm() {
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+
+        System.out.println("Enter Dependent ID to Update: ");
+        data.put(DependentView.CUSTOMER_ID, reader.read());
+
+        System.out.print("Enter Full Name: ");
+        data.put(DependentView.CUSTOMER_NAME, reader.read());
+
+        System.out.print("Enter Insurance Card Number: ");
+        data.put(DependentView.CARD_NUM, reader.read());
+
+        return data;
     }
 }

@@ -62,4 +62,13 @@ public class DependentController extends CustomerController<Dependent> {
 
         return executeOperator(deleter, data, dependentView);
     }
+
+    @Override
+    public Dependent update() {
+        DependentView dependentView = systemViewManager.getDependentView();
+        Map<String, String> data = dependentView.displayUpdateForm();
+        DependentUpdater updater = new DependentUpdater(systemStorageManager, systemViewManager);
+
+        return executeOperator(updater, data, dependentView);
+    }
 }

@@ -18,6 +18,13 @@ public class PolicyHolder extends Customer {
         dependentIds = new ArrayList<>();
     }
 
+    public PolicyHolder(String id, String fullName, String insuranceCardNumber) {
+        super(id, fullName);
+        this.insuranceCardNumber = insuranceCardNumber;
+        dependentIds = new ArrayList<>();
+    }
+
+
     public PolicyHolder(String id, String fullName, String insuranceCardNumber, List<String> dependentIds) {
         super(id, fullName);
         this.insuranceCardNumber = insuranceCardNumber;

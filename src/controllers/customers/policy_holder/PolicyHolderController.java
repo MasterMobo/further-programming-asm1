@@ -70,4 +70,13 @@ public class PolicyHolderController extends CustomerController<PolicyHolder> {
 
         return executeOperator(deleter, data, policyHolderView);
     }
+
+    @Override
+    public PolicyHolder update() {
+        PolicyHolderView policyHolderView = systemViewManager.getPolicyHolderView();
+        Map<String, String> data = policyHolderView.displayUpdateForm();
+        PolicyHolderUpdater updater = new PolicyHolderUpdater(systemStorageManager, systemViewManager);
+
+        return executeOperator(updater, data, policyHolderView);
+    }
 }

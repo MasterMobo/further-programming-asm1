@@ -22,6 +22,7 @@ public class OptionBuilder {
         policyHolder.addOption(new AddPolicyHolderOption(controllers));
         policyHolder.addOption(new GetSinglePolicyHolderOption(controllers));
         policyHolder.addOption(new GetManyPolicyHolderOption(controllers));
+        policyHolder.addOption(new UpdateHolderOption(controllers));
         policyHolder.addOption(new DeletePolicyHolderOption(controllers));
 
         Option dependent = new DependentOption();
@@ -29,6 +30,7 @@ public class OptionBuilder {
         dependent.addOption(new GetSingleDependentOption(controllers));
         dependent.addOption(new GetManyDependentOption(controllers));
         dependent.addOption(new GetSinglePolicyHolderOption(controllers));
+        dependent.addOption(new UpdateDependentOption(controllers));
         dependent.addOption(new DeleteDependentOption(controllers));
 
         Option customer = new CustomerOption();

@@ -5,6 +5,7 @@ import models.customer.roles.dependent.Dependent;
 import models.customer.roles.holder.PolicyHolder;
 import utils.console.ConsoleColors;
 import utils.console.ConsoleUtils;
+import views.general.customers.DependentView;
 import views.general.customers.PolicyHolderView;
 import io.readers.ConsoleReader;
 import io.readers.DataReader;
@@ -105,5 +106,21 @@ public class PolicyHolderTextView extends CustomerTextView<PolicyHolder> impleme
         ConsoleUtils.printRed("(This action is irreversible)");
 
         return reader.read().equalsIgnoreCase("y");
+    }
+
+    @Override
+    public Map<String, String> displayUpdateForm() {
+        Map<String, String> data = new HashMap<>();
+        DataReader reader = ConsoleReader.getInstance();
+
+        System.out.println("Enter Policy Holder ID to Update: ");
+        data.put(DependentView.CUSTOMER_ID, reader.read());
+
+        System.out.print("Enter Full Name: ");
+        data.put(DependentView.CUSTOMER_NAME, reader.read());
+
+        System.out.print("Enter Insurance Card Number: ");
+        data.put(DependentView.CARD_NUM, reader.read());
+        return data;
     }
 }
