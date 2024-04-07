@@ -78,7 +78,7 @@ public class OptionTree implements OptionManager{
         System.out.println("---Other Options---");
         System.out.println("b - Back to Previous");
         System.out.println("r - Return to Main Menu");
-        System.out.println("q - Quit Program");
+        System.out.println("q - Quit Program (Save)");
 
         System.out.println("Enter your choice:");
     }
@@ -96,8 +96,7 @@ public class OptionTree implements OptionManager{
                 return true;
             }
             case "q" -> {
-                FileManager fileManager = FileManager.getInstance();
-                fileManager.save();
+                onQuit();
                 return false;
             }
             default -> {
@@ -124,5 +123,10 @@ public class OptionTree implements OptionManager{
             reset();
             execute();
         }
+    }
+
+    private void onQuit() {
+        FileManager fileManager = FileManager.getInstance();
+        fileManager.save();
     }
 }

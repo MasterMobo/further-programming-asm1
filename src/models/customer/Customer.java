@@ -41,6 +41,10 @@ public abstract class Customer implements StorageItem {
         this.insuranceCardNumber = insuranceCardNumber;
     }
 
+    public void removeInsuranceCard() {
+        this.insuranceCardNumber = "none";
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

@@ -58,7 +58,7 @@ public class InsuranceClaimManyGetter extends ControllerOperator {
 
         // If customer is dependent, they should not have any dependent claims, return result
         Customer customer = customers.getCustomer(insuredId);
-        if (customer instanceof Dependent) {
+        if (!(customer instanceof PolicyHolder)) {
             return res;
         }
 

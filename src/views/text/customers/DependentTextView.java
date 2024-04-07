@@ -15,6 +15,11 @@ import java.util.Map;
 public class DependentTextView extends CustomerTextView<Dependent> implements DependentView {
     @Override
     public void displayItem(Dependent customer) {
+        if (customer == null) {
+            System.out.println("Nothing to Show");
+            return;
+        };
+
         System.out.println("Dependent (" + customer.getId() + "): "
                 + "\n\t Full Name: " + customer.getFullName()
                 + "\n\t Insurance Card: " + customer.getInsuranceCardNumber()

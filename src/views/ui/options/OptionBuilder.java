@@ -1,8 +1,7 @@
 package views.ui.options;
 
 import controllers.system.SystemControllerManager;
-import views.ui.options.cards.AddCardOption;
-import views.ui.options.cards.InsuranceCardOption;
+import views.ui.options.cards.*;
 import views.ui.options.claims.*;
 import views.ui.options.customers.*;
 import views.ui.options.customers.dependents.*;
@@ -38,6 +37,9 @@ public class OptionBuilder {
 
         Option cards = new InsuranceCardOption();
         cards.addOption(new AddCardOption(controllers));
+        cards.addOption(new GetSingleCardOption(controllers));
+        cards.addOption(new GetManyCardOption(controllers));
+        cards.addOption(new DeleteCardOption(controllers));
 
         Option claims = new InsuranceClaimOption();
         claims.addOption(new AddClaimOption(controllers));

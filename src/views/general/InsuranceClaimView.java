@@ -16,5 +16,5 @@ public interface InsuranceClaimView extends GetView, AddView, UpdateView, Delete
     String CLAIM_STATUS = "CLAIM_STATUS";
     String RECEIVER_BANK = "RECEIVER_BANK";
 
-    void displayManyClaims(List<List<InsuranceClaim>> res);
+    void displayMany(List<List<InsuranceClaim>> res);
 }

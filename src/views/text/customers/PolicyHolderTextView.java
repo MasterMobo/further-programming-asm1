@@ -18,6 +18,11 @@ public class PolicyHolderTextView extends CustomerTextView<PolicyHolder> impleme
 
     @Override
     public void displayItem(PolicyHolder customer) {
+        if (customer == null) {
+            System.out.println("Nothing to Show");
+            return;
+        }
+
         System.out.println("Policy Holder(" + customer.getId() + "): "
                             + "\n\t Full Name: " + customer.getFullName()
                             + "\n\t Insurance Card: " + customer.getInsuranceCardNumber()

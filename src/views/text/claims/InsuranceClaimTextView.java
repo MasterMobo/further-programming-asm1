@@ -18,6 +18,11 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
 
     @Override
     public void displayItem(InsuranceClaim claim) {
+        if (claim == null) {
+            System.out.println("Nothing to show");
+            return;
+        };
+
         System.out.println("Insurance Claim (" + claim.getId() + "): "
                             + "\n\tInsured Customer ID: " + claim.getInsuredPersonId()
                             + "\n\tInsurance Card Number: " + claim.getCardNumber()
@@ -164,7 +169,7 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
     }
 
     @Override
-    public void displayManyClaims(List<List<InsuranceClaim>> res) {
+    public void displayMany(List<List<InsuranceClaim>> res) {
         if (res.get(0).size() == 0 && res.get(1).size() == 0) {
             System.out.println(ConsoleColors.BLUE + "Nothing to show" + ConsoleColors.RESET);
             return;
