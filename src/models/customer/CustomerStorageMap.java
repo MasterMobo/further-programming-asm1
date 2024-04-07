@@ -1,5 +1,9 @@
 package models.customer;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.customer.roles.dependent.DependentStorage;
 import models.customer.roles.holder.PolicyHolderStorage;
 import models.customer.roles.CustomerRoleStorage;

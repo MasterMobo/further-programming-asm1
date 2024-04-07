@@ -1,5 +1,9 @@
 package models.storage;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public class PrefixIdGenerator implements IdGenerator{
     private String prefix;  // Prefix of the models.id
     private int numLength;  // Length of the number after the prefix

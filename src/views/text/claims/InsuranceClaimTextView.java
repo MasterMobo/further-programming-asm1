@@ -1,5 +1,9 @@
 package views.text.claims;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.claims.InsuranceClaim;
 import utils.console.ConsoleColors;
 import utils.console.ConsoleUtils;

@@ -9,6 +9,10 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public class FileIOHandler {
 
     public FileIOHandler() {

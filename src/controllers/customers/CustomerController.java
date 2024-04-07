@@ -1,5 +1,9 @@
 package controllers.customers;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.*;
 import models.customer.Customer;
 import models.system.SystemStorageManager;

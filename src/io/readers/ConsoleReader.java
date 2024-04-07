@@ -1,5 +1,9 @@
 package io.readers;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import java.util.Scanner;
 
 public class ConsoleReader implements DataReader{

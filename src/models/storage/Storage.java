@@ -1,5 +1,9 @@
 package models.storage;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import java.util.List;
 
 public interface Storage<T> extends Iterable<T>{

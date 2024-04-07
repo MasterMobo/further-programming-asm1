@@ -1,5 +1,9 @@
 package views.ui.options;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.system.SystemControllerManager;
 import views.ui.options.cards.*;
 import views.ui.options.claims.*;

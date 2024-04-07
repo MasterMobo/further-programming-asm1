@@ -1,5 +1,9 @@
 package controllers.claims;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.ControllerOperator;
 import models.claims.InsuranceClaim;
 import models.claims.InsuranceClaimStatus;

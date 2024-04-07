@@ -1,5 +1,9 @@
 package views.sorters;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.customer.Customer;
 
 import java.util.ArrayList;

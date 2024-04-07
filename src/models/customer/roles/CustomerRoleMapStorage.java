@@ -1,5 +1,9 @@
 package models.customer.roles;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.customer.Customer;
 import models.storage.MapStorage;
 

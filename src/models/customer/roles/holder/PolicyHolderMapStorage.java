@@ -1,5 +1,9 @@
 package models.customer.roles.holder;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.customer.roles.CustomerRoleMapStorage;
 import models.storage.StorageCode;
 

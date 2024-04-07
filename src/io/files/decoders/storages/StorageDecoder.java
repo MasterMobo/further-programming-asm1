@@ -1,5 +1,9 @@
 package io.files.decoders.storages;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import io.files.DataSeparator;
 import io.files.decoders.StringDecoder;
 import models.storage.Storage;

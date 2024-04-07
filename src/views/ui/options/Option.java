@@ -5,6 +5,10 @@ import controllers.system.SystemControllerManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public abstract class Option {
     protected String title;
     protected List<Option> children;

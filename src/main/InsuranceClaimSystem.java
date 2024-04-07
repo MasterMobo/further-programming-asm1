@@ -1,5 +1,9 @@
 package main;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.cards.InsuranceCardController;
 import controllers.claims.InsuranceClaimController;
 import controllers.customers.CustomerController;

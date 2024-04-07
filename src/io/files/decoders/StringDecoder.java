@@ -1,5 +1,9 @@
 package io.files.decoders;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import io.files.DataSeparator;
 
 import java.util.ArrayList;

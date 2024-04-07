@@ -1,5 +1,9 @@
 package views.ui.options.cards;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.cards.InsuranceCardController;
 import controllers.system.SystemControllerManager;
 import views.ui.options.Option;

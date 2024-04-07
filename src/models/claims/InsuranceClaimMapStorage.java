@@ -1,5 +1,9 @@
 package models.claims;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.storage.MapStorage;
 import models.storage.PrefixIdGenerator;
 import models.storage.StorageCode;

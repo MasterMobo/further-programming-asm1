@@ -1,5 +1,8 @@
 package views.system;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
 public interface ViewCode {
     String POLICY_HOLDERS = "POLICY_HOLDERS";
     String DEPENDENTS = "DEPENDENTS";

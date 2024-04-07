@@ -1,5 +1,9 @@
 package io.files.decoders.items;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import io.files.decoders.StringDecoder;
 import models.customer.roles.holder.PolicyHolder;
 

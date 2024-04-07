@@ -1,7 +1,11 @@
 package models.customer.roles.holder;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.customer.roles.CustomerRoleStorage;
 
 public interface PolicyHolderStorage extends CustomerRoleStorage<PolicyHolder> {
-    public PolicyHolder getPolicyHolderOfDependent(String dependentId);
+    PolicyHolder getPolicyHolderOfDependent(String dependentId);
 }

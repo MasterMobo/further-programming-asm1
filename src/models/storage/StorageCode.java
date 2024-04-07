@@ -1,5 +1,9 @@
 package models.storage;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public interface StorageCode {
     // The codes used to identify all storages in the system
     String CUSTOMERS = "CUSTOMERS";

@@ -1,5 +1,9 @@
 package models.customer;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.storage.StorageItem;
 
 public abstract class Customer implements StorageItem {

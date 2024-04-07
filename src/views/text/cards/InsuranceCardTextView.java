@@ -1,5 +1,9 @@
 package views.text.cards;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.card.InsuranceCard;
 import utils.console.ConsoleUtils;
 import views.general.InsuranceCardView;

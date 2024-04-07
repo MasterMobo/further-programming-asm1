@@ -1,5 +1,9 @@
 package views.factories;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import views.factories.ViewFactory;
 import views.general.InsuranceCardView;
 import views.general.InsuranceClaimView;

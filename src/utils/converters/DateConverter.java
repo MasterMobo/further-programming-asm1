@@ -1,5 +1,9 @@
 package utils.converters;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import java.util.Date;
 
 public class DateConverter extends TypeConverter<Date> {

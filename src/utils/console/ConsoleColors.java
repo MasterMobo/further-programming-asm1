@@ -1,6 +1,9 @@
 package utils.console;
 
-// Credit: https://stackoverflow.com/a/45444716
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ *     Credit: https://stackoverflow.com/a/45444716
+ */
 
 public class ConsoleColors {
     // Reset

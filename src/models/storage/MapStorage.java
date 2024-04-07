@@ -1,5 +1,9 @@
 package models.storage;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import java.util.*;
 
 public abstract class MapStorage<T extends StorageItem> implements Storage<T> {

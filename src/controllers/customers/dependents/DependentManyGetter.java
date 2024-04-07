@@ -1,5 +1,9 @@
 package controllers.customers.dependents;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.ControllerOperator;
 import models.customer.roles.dependent.Dependent;
 import models.customer.roles.dependent.DependentStorage;

@@ -26,6 +26,10 @@ import models.system.SystemStorageMap;
 
 import java.beans.Encoder;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public class FileManager {
     private static FileManager instance;
     private SystemStorageManager systemStorageManager;
@@ -38,7 +42,6 @@ public class FileManager {
         if (!ioHandler.dirExists(DataFilePath.ROOT)) {
             ioHandler.createDir(DataFilePath.ROOT);
 
-            // TODO: add sample data here
             ioHandler.writeTo(DataFilePath.POLICY_HOLDER, "");
             ioHandler.writeTo(DataFilePath.DEPENDENTS, "");
             ioHandler.writeTo(DataFilePath.INSURANCE_CARDS, "");

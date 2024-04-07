@@ -1,5 +1,9 @@
 package views.text;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import utils.console.ConsoleColors;
 import views.general.MessageView;
 import views.system.ViewCode;

@@ -1,5 +1,9 @@
 package controllers.customers.dependents;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.customers.CustomerController;
 import controllers.customers.policy_holder.PolicyHolderDeleter;
 import controllers.system.ControllerCode;

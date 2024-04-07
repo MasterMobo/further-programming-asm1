@@ -1,5 +1,9 @@
 package views.general;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import models.card.InsuranceCard;
 import views.general.operations.*;
 import views.system.StorableView;

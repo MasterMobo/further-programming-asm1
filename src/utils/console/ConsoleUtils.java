@@ -1,5 +1,9 @@
 package utils.console;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 public class ConsoleUtils {
     public static void clearScreen(){
         for (int i = 0; i < 20; i++) {

@@ -1,5 +1,9 @@
 package views.ui.options.claims;
 
+/**
+ * @author <Bui Dang Khoa - s3978482>
+ */
+
 import controllers.claims.InsuranceClaimController;
 import controllers.system.SystemControllerManager;
 import views.ui.options.Option;
