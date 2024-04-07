@@ -90,16 +90,22 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         System.out.println("How many documents would you want to create for this claim? ");
         String input = reader.read();
 
-        int docCount = intConverter.fromString(input);
+        try {
+            int docCount = intConverter.fromString(input);
 
-        for (int i = 1; i <= docCount; i++) {
-            System.out.print("Enter Document " + i + " Name: ");
-            String docName = reader.read();
-            documents.append(docName);
-            documents.append("\n");
+            for (int i = 1; i <= docCount; i++) {
+                System.out.print("Enter Document " + i + " Name: ");
+                String docName = reader.read();
+                documents.append(docName);
+                documents.append("\n");
+            }
+
+            return documents.toString();
+        } catch (IllegalArgumentException exception) {
+            ConsoleUtils.printRed("Invalid number, please try again");
+            return displayDocumentForm();
         }
 
-        return documents.toString();
     }
 
     private String displayBankInfoForm() {

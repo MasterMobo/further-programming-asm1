@@ -73,13 +73,16 @@ public class InsuranceClaimCreator extends ControllerOperator {
             return claimStorage.add(newClaim);
 
         } catch (IllegalArgumentException e) {
+            if (e.getMessage() == null) {
+                messageView.displayError("Invalid Date");
+                return null;
+            }
+
             if (e.getMessage().contains("enum")) {
                 messageView.displayError("Invalid Status");
                 return null;
             }
 
-            // The remaining exception should be from date conversion
-            messageView.displayError("Invalid Date");
             return null;
         }
     }

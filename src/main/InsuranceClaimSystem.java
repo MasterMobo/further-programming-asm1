@@ -77,7 +77,7 @@ public class InsuranceClaimSystem {
     }
 
     public void start() {
-        try {
+
             SystemStorageManager systemStorageManager = initSystemStorage();
 
             FileManager.setSystemStorageManager(systemStorageManager);
@@ -89,12 +89,12 @@ public class InsuranceClaimSystem {
             SystemViewManager systemViewManager = initSystemView();
             SystemControllerManager systemControllerManager = initSystemController(systemStorageManager, systemViewManager);
             OptionManager menu = initSystemMenu(systemControllerManager);
-
+        try {
             menu.execute();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Something went wrong, please try again.");
+            menu.execute();
         }
-
     }
 }
