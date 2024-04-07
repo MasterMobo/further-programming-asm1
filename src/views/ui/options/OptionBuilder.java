@@ -41,6 +41,7 @@ public class OptionBuilder {
         cards.addOption(new AddCardOption(controllers));
         cards.addOption(new GetSingleCardOption(controllers));
         cards.addOption(new GetManyCardOption(controllers));
+        cards.addOption(new UpdateCardOption(controllers));
         cards.addOption(new DeleteCardOption(controllers));
 
         Option claims = new InsuranceClaimOption();

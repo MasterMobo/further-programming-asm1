@@ -1,9 +1,6 @@
 package controllers.cards;
 
-import controllers.Controller;
-import controllers.AddableController;
-import controllers.DeletableController;
-import controllers.GettableController;
+import controllers.*;
 import controllers.system.ControllerCode;
 import models.card.InsuranceCard;
 import models.system.SystemStorageManager;
@@ -13,7 +10,7 @@ import views.system.SystemViewManager;
 import java.util.List;
 import java.util.Map;
 
-public class InsuranceCardController extends Controller<InsuranceCard> implements AddableController<InsuranceCard>, GettableController<InsuranceCard>, DeletableController<InsuranceCard> {
+public class InsuranceCardController extends Controller<InsuranceCard> implements AddableController<InsuranceCard>, GettableController<InsuranceCard>, DeletableController<InsuranceCard>, UpdatableController<InsuranceCard> {
     public InsuranceCardController() {
         super();
     }
@@ -65,6 +62,16 @@ public class InsuranceCardController extends Controller<InsuranceCard> implement
         InsuranceCardDeleter deleter = new InsuranceCardDeleter(systemStorageManager, systemViewManager);
         InsuranceCardView cardView = systemViewManager.getInsuranceCardView();
         Map<String, String> data = cardView.displayGetForm();
+
         return executeOperator(deleter, data, cardView);
+    }
+
+    @Override
+    public InsuranceCard update() {
+        InsuranceCardUpdater updater = new InsuranceCardUpdater(systemStorageManager, systemViewManager);
+        InsuranceCardView cardView = systemViewManager.getInsuranceCardView();
+        Map<String, String> data = cardView.displayUpdateForm();
+
+        return executeOperator(updater, data, cardView);
     }
 }
