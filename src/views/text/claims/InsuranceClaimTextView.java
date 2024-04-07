@@ -188,10 +188,8 @@ public class InsuranceClaimTextView implements InsuranceClaimView {
         }
 
         Sorter<InsuranceClaim> sorter = new InsuranceClaimSorter();
-        int i  = 0;
         for (InsuranceClaim mainClaim: sorter.sort(res.get(0))) {
             displayItem(mainClaim);
-            System.out.println(i);
         }
 
         if (res.get(1).size() == 0) {
