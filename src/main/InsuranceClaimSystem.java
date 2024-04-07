@@ -16,7 +16,9 @@ import models.card.InsuranceCardMapStorage;
 import models.claims.InsuranceClaimMapStorage;
 import models.customer.CustomerStorageManager;
 import models.customer.CustomerStorageMap;
+import models.customer.roles.dependent.Dependent;
 import models.customer.roles.dependent.DependentMapStorage;
+import models.customer.roles.holder.PolicyHolder;
 import models.customer.roles.holder.PolicyHolderMapStorage;
 import models.system.SystemStorageManager;
 import models.system.SystemMapStorage;
@@ -30,7 +32,6 @@ import views.ui.options.OptionTree;
 
 public class InsuranceClaimSystem {
     // Highest-level class. Entry point of the program;
-
 
     public InsuranceClaimSystem() {
     }
@@ -60,8 +61,8 @@ public class InsuranceClaimSystem {
     }
 
     private SystemControllerManager initSystemController(SystemStorageManager systemStorageManager, SystemViewManager systemViewManager) {
-        CustomerController policyHolderController = new PolicyHolderController(systemStorageManager, systemViewManager);
-        CustomerController dependentController = new DependentController(systemStorageManager, systemViewManager);
+        CustomerController<PolicyHolder> policyHolderController = new PolicyHolderController(systemStorageManager, systemViewManager);
+        CustomerController<Dependent> dependentController = new DependentController(systemStorageManager, systemViewManager);
         InsuranceCardController cardController = new InsuranceCardController(systemStorageManager, systemViewManager);
         InsuranceClaimController claimController = new InsuranceClaimController(systemStorageManager, systemViewManager);
 
